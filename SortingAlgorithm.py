@@ -36,6 +36,7 @@ class Sorting:
         for i in range(1, self.NoOfElements + 1):
             self.array.append(self.HeightDiff * i)
 
+        self.SortedArray = sorted(self.array)
         self.thickness = math.ceil((800 - self.gap * (self.NoOfElements + 1)) / self.NoOfElements)
         self.initial = (self.gap + self.thickness) / 2
         self.difference = self.thickness + self.gap
@@ -65,6 +66,10 @@ class Sorting:
 
         if self.AlgorithmName == 'Bubble Sort':
             DrawElements = Thread(target=self.DrawBubleSort)
+            DrawElements.start()
+
+        elif self.AlgorithmName == "Insertion Sort":
+            DrawElements = Thread(target=self.DrawInsertionSort)
             DrawElements.start()
 
         elif self.AlgorithmName == "Selection Sort":
@@ -118,7 +123,8 @@ class Sorting:
             pygame.draw.line(self.screen, self.colours[i], (self.last, 0), (self.last, self.array[i]),self.thickness)
             self.last += self.difference
 
-        if self.array==sorted(self.array):
+        if self.array == self.SortedArray:
+            print("yo")
             self.Sorting=False
             self.last = self.initial
             for i in range(len(self.array)):
@@ -133,52 +139,48 @@ class Sorting:
     def DrawBubleSort(self):
         self.CurrentPosition=0
         while(self.Sorting):
-            try:
-                if self.CurrentPosition == self.NoOfElements -1:
-                    self.CurrentPosition=0
+            if self.CurrentPosition == self.NoOfElements -1:
+                self.CurrentPosition=0
+            self.Operations+=1
+            if self.array[self.CurrentPosition] > self.array[self.CurrentPosition+1]:
                 self.Operations+=1
-                if self.array[self.CurrentPosition] > self.array[self.CurrentPosition+1]:
-                    self.Operations+=1
-                    self.colours[self.CurrentPosition]=self.green
-                    self.colours[self.CurrentPosition+1]=self.red
-                    self.draw()
+                self.colours[self.CurrentPosition]=self.green
+                self.colours[self.CurrentPosition+1]=self.red
+                self.draw()
 
-                    time.sleep(1/self.Speed)
-                    if not self.running:
-                        self.WaitForEndProcess=False
-                        break
+                time.sleep(1/self.Speed)
+                if not self.running:
+                    break
 
-                    self.colours[self.CurrentPosition] = self.black
-                    self.draw()
-                    self.array[self.CurrentPosition],self.array[self.CurrentPosition+1]=self.array[self.CurrentPosition+1],self.array[self.CurrentPosition]
-                    self.colours[self.CurrentPosition]=self.red
-                    self.colours[self.CurrentPosition+1] = self.green
-                    self.draw()
+                self.colours[self.CurrentPosition] = self.black
+                self.draw()
+                self.array[self.CurrentPosition],self.array[self.CurrentPosition+1]=self.array[self.CurrentPosition+1],self.array[self.CurrentPosition]
+                self.colours[self.CurrentPosition]=self.red
+                self.colours[self.CurrentPosition+1] = self.green
+                self.draw()
 
-                    time.sleep(1/self.Speed)
+                time.sleep(1/self.Speed)
 
-                    self.colours[self.CurrentPosition] = self.white
-                    self.colours[self.CurrentPosition + 1] = self.white
+                self.colours[self.CurrentPosition] = self.white
+                self.colours[self.CurrentPosition + 1] = self.white
 
-                else:
-                    self.colours[self.CurrentPosition]=self.green
-                    self.colours[self.CurrentPosition+1]=self.green
-                    self.draw()
+            else:
+                self.colours[self.CurrentPosition]=self.green
+                self.colours[self.CurrentPosition+1]=self.green
+                self.draw()
+                if not self.running:
+                    break
+                time.sleep(1/self.Speed)
 
-                    time.sleep(1/self.Speed)
-
-                    self.colours[self.CurrentPosition] = self.white
-                    self.colours[self.CurrentPosition+1] = self.white
-                self.CurrentPosition+=1
-                self.WaitForEndProcess=False
-            except:
-                pass
+                self.colours[self.CurrentPosition] = self.white
+                self.colours[self.CurrentPosition+1] = self.white
+            self.CurrentPosition+=1
+        self.WaitForEndProcess=False
 
 
     def DrawSelectionSort(self):
         self.CurrentPosition=0
         while(self.Sorting):
-            self.WaitForEndProcess=True
             self.min=min(self.array[self.CurrentPosition:])
             self.minPosition=0
             for i in range(self.CurrentPosition,self.NoOfElements):
@@ -187,13 +189,12 @@ class Sorting:
                     self.minPosition=i
                 self.colours[i] = self.blue
                 self.draw()
-                time.sleep(1/self.Speed)
-                self.colours[i] = self.white
                 if not self.running:
                     break
+                time.sleep(1/self.Speed)
+                self.colours[i] = self.white
             self.Operations+=1
             if not self.running:
-                self.WaitForEndProcess=False
                 break
             if self.CurrentPosition==self.minPosition:
                 self.colours[self.minPosition]=self.green
@@ -213,9 +214,56 @@ class Sorting:
                 self.colours[self.CurrentPosition] = self.green
                 self.colours[self.minPosition] = self.red
                 self.draw()
+                if not self.running:
+                    break
                 time.sleep(1/self.Speed)
                 self.colours[self.CurrentPosition] = self.white
                 self.colours[self.minPosition] = self.white
 
             self.CurrentPosition+=1
-            self.WaitForEndProcess=False
+        self.WaitForEndProcess=False
+
+
+    def DrawInsertionSort(self):
+        self.CurrentPosition = 0
+        while(self.Sorting):
+            self.colours[self.CurrentPosition]=self.blue
+            self.draw()
+            time.sleep(1/self.Speed)
+            self.colours[self.CurrentPosition]=self.white
+            self.temp=self.array[self.CurrentPosition]
+            i=self.CurrentPosition-1
+            while(i>=0 and self.array[i]>self.temp):
+                self.Operations+=1
+                self.colours[i]=self.red
+                self.draw()
+                time.sleep(1/self.Speed)
+                if not self.running:
+                    break
+                self.colours[i + 1] = self.black
+                self.colours[i] = self.black
+                self.draw()
+                self.array[i+1]=self.array[i]
+                self.colours[i]=self.red
+                self.colours[i+1]=self.green
+                self.draw()
+                time.sleep(1/self.Speed)
+                self.colours[i+1]=self.white
+                self.colours[i]=self.white
+                i-=1
+            self.Operations+=1
+            self.colours[i + 1] = self.black
+            self.colours[i]  = self.black
+            self.draw()
+            self.colours[i + 1] = self.white
+            self.colours[i] = self.white
+            self.array[i+1] = self.temp
+            if not self.running:
+                break
+            self.colours[i+1]=self.blue
+            self.draw()
+            time.sleep(1/self.Speed)
+            self.colours[i+1]=self.white
+            self.CurrentPosition+=1
+
+        self.WaitForEndProcess=False

@@ -25,6 +25,7 @@ class Sorting:
         self.array = []
         self.colours=[]
         self.Operations=0
+
         for i in range(self.NoOfElements):
             self.colours.append(self.white)
         self.WaitForEndProcess = True
@@ -65,7 +66,7 @@ class Sorting:
             pass
 
         if self.AlgorithmName == 'Bubble Sort':
-            DrawElements = Thread(target=self.DrawBubleSort)
+            DrawElements = Thread(target=self.DrawBubbleSort)
             DrawElements.start()
 
         elif self.AlgorithmName == "Insertion Sort":
@@ -75,7 +76,9 @@ class Sorting:
         elif self.AlgorithmName == "Selection Sort":
             DrawElements = Thread(target=self.DrawSelectionSort)
             DrawElements.start()
-
+        elif self.AlgorithmName == "Heap Sort":
+            DrawElements = Thread(target=self.DrawHeapSort)
+            DrawElements.start()
 
 
         self.CheckActions()
@@ -124,7 +127,6 @@ class Sorting:
             self.last += self.difference
 
         if self.array == self.SortedArray:
-            print("yo")
             self.Sorting=False
             self.last = self.initial
             for i in range(len(self.array)):
@@ -136,7 +138,7 @@ class Sorting:
             SortingAlgorithm.RunClock=False
 
 
-    def DrawBubleSort(self):
+    def DrawBubbleSort(self):
         self.CurrentPosition=0
         while(self.Sorting):
             if self.CurrentPosition == self.NoOfElements -1:
@@ -266,4 +268,164 @@ class Sorting:
             self.colours[i+1]=self.white
             self.CurrentPosition+=1
 
+        self.WaitForEndProcess=False
+
+
+    def Heapify(self):
+        for i in range(self.NoOfElements-1,-1,-1):
+            while (2 * i + 1 < self.NoOfElements and (self.array[2 * i + 1] > self.array[i] or (2 * i + 2 < self.NoOfElements and self.array[2 * i + 2] > self.array[i]))):
+                self.Operations+=1
+                if 2 * i + 2 < self.NoOfElements:
+                    if self.array[2 * i + 1] == max(self.array[2 * i + 1], self.array[2 * i + 2]):
+                        self.colours[i]=self.red
+                        self.colours[2*i+1]=self.red
+                        self.draw()
+                        if not self.Sorting:
+                            break
+                        time.sleep(1/self.Speed)
+                        self.colours[2 * i + 1] = self.black
+                        self.draw()
+                        self.array[i], self.array[2 * i + 1] = self.array[2 * i + 1], self.array[i]
+                        self.colours[2 * i + 1] = self.red
+                        self.draw()
+                        if not self.Sorting:
+                            break
+                        time.sleep(1/self.Speed)
+                        self.colours[i] = self.white
+                        self.colours[2 * i + 1] = self.white
+                        self.draw()
+                        i = 2 * i + 1
+
+                    else:
+                        self.colours[i] = self.red
+                        self.colours[2 * i + 2] = self.red
+                        self.draw()
+                        if not self.Sorting:
+                            break
+                        time.sleep(1/self.Speed)
+                        self.colours[2 * i + 2] = self.black
+                        self.draw()
+                        self.array[i], self.array[2 * i + 2] = self.array[2 * i + 2], self.array[i]
+                        self.colours[2*i+2]=self.red
+                        self.draw()
+                        if not self.Sorting:
+                            break
+                        time.sleep(1/self.Speed)
+                        self.colours[i] = self.white
+                        self.colours[2 * i + 2] = self.white
+                        self.draw()
+                        i = 2 * i + 2
+                else:
+                    self.colours[i] = self.red
+                    self.colours[2 * i + 1] = self.red
+                    self.draw()
+                    if not self.Sorting:
+                        break
+                    time.sleep(1 / self.Speed)
+                    self.colours[2 * i + 1] = self.black
+                    self.draw()
+                    self.array[i], self.array[2 * i + 1] = self.array[2 * i + 1], self.array[i]
+                    self.colours[2 * i + 1] = self.red
+                    self.draw()
+                    if not self.Sorting:
+                        break
+                    time.sleep(1 / self.Speed)
+                    self.colours[i] = self.white
+                    self.colours[2 * i + 1] = self.white
+                    self.draw()
+                    i = 2 * i + 1
+            if not self.Sorting:
+                break
+        if not self.Sorting:
+            self.WaitForEndProcess=False
+
+
+
+
+    def DrawHeapSort(self):
+        self.Heapify()
+        j=self.NoOfElements
+        while(self.Sorting):
+            j-=1
+            self.colours[0]=self.green
+            self.colours[j]=self.red
+            self.draw()
+            if not self.Sorting:
+                break
+            time.sleep(1/self.Speed)
+            self.colours[0]=self.black
+            self.draw()
+            self.Operations+=1
+            self.array[j], self.array[0] = self.array[0], self.array[j]
+            self.colours[j]=self.green
+            self.colours[0]=self.red
+            self.draw()
+            self.colours[j] = self.white
+            self.colours[0] = self.white
+            if not self.Sorting:
+                break
+            time.sleep(1/self.Speed)
+            i = 0
+            while (2 * i + 1 < j and (self.array[2 * i + 1] > self.array[i] or (2 * i + 2 < j and self.array[2 * i + 2] > self.array[i]))):
+                self.Operations+=1
+                if 2 * i + 2 < j:
+                    if self.array[2 * i + 1] == max(self.array[2 * i + 1], self.array[2 * i + 2]):
+                        self.colours[i] = self.red
+                        self.colours[2 * i + 1] = self.red
+                        self.draw()
+                        if not self.Sorting:
+                            break
+                        time.sleep(1 / self.Speed)
+                        self.colours[2 * i + 1] = self.black
+                        self.draw()
+                        self.array[i], self.array[2 * i + 1] = self.array[2 * i + 1], self.array[i]
+                        self.colours[2 * i + 1] = self.red
+                        self.draw()
+                        if not self.Sorting:
+                            break
+                        time.sleep(1 / self.Speed)
+                        self.colours[i] = self.white
+                        self.colours[2 * i + 1] = self.white
+                        self.draw()
+                        i = 2 * i + 1
+                    else:
+                        self.colours[i] = self.red
+                        self.colours[2 * i + 2] = self.red
+                        self.draw()
+                        if not self.Sorting:
+                            break
+                        time.sleep(1 / self.Speed)
+                        self.colours[2 * i + 2] = self.black
+                        self.draw()
+                        self.array[i], self.array[2 * i + 2] = self.array[2 * i + 2], self.array[i]
+                        self.colours[2 * i + 2] = self.red
+                        self.draw()
+                        if not self.Sorting:
+                            break
+                        time.sleep(1 / self.Speed)
+                        self.colours[i] = self.white
+                        self.colours[2 * i + 2] = self.white
+                        self.draw()
+                        i = 2 * i + 2
+                else:
+                    self.colours[i] = self.red
+                    self.colours[2 * i + 1] = self.red
+                    self.draw()
+                    if not self.Sorting:
+                        break
+                    time.sleep(1 / self.Speed)
+                    self.colours[2 * i + 1] = self.black
+                    self.draw()
+                    self.array[i], self.array[2 * i + 1] = self.array[2 * i + 1], self.array[i]
+                    self.colours[2 * i + 1] = self.red
+                    self.draw()
+                    if not self.Sorting:
+                        break
+                    time.sleep(1 / self.Speed)
+                    self.colours[i] = self.white
+                    self.colours[2 * i + 1] = self.white
+                    self.draw()
+                    i = 2 * i + 1
+            if not self.Sorting:
+                break
         self.WaitForEndProcess=False

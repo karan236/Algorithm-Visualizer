@@ -14,6 +14,8 @@
 
 
 ## Screenshots:
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/tkinterwindow.png?raw=true)
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/pygamewindow.png?raw=true)
 
 ## Prerequisites:
  *Click on the library to Download*

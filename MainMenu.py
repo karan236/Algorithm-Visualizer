@@ -8,7 +8,7 @@ class front:
         self.root.geometry("650x300")
         self.root.resizable(False, False)
         self.root.title("Algorithm Visualizer")
-        self.root.iconbitmap("hnet.com-image.ico")
+        self.root.iconbitmap("img/eye.ico")
 
         self.AlgoTypeLabel = Label(self.root, text='  Select Algorithm Type:-', font=("Courier", 10))
         self.AlgoTypeLabel.grid(row=0, column=0 ,pady=15)

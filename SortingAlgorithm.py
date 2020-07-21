@@ -440,6 +440,7 @@ class Sorting:
             #self.colours[end]=self.red
             self.draw()
             for i in range(start,end):
+                self.Operations+=1
                 self.colours[self.pindex]=self.green
                 if self.pindex==i:
                     pass
@@ -500,6 +501,7 @@ class Sorting:
     def DrawQuickSort(self):
         #print(self.array)
             #return self.pind
+        self.Operations=0
         while(self.Sorting):
             self.draw()
             self.stack=deque()

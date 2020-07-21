@@ -7,6 +7,7 @@ from test import *
 from threading import *
 from tkinter import *
 import StartProcess
+from collections import deque
 
 RunClock=True
 
@@ -78,6 +79,9 @@ class Sorting:
             DrawElements.start()
         elif self.AlgorithmName == "Heap Sort":
             DrawElements = Thread(target=self.DrawHeapSort)
+            DrawElements.start()
+        elif self.AlgorithmName=="Quick Sort":
+            DrawElements = Thread(target=self.DrawQuickSort)
             DrawElements.start()
 
 
@@ -426,6 +430,85 @@ class Sorting:
                     self.colours[2 * i + 1] = self.white
                     self.draw()
                     i = 2 * i + 1
+            if not self.Sorting:
+                break
+        self.WaitForEndProcess=False
+    def partition(self,start,end):
+            self.pivot=self.array[end]
+            self.pindex=start
+            
+            #self.colours[end]=self.red
+            self.draw()
+            for i in range(start,end):
+                self.colours[self.pindex]=self.green
+                if self.pindex==i:
+                    pass
+                else:
+                    self.colours[i]=self.blue
+                    self.draw()
+                    time.sleep(1 / self.Speed)
+                    self.colours[i]=self.black
+                    self.colours[i]=self.white
+                    self.draw()
+                if self.array[i]<=self.pivot:
+                    self.colours[i]=self.red
+                    self.draw()
+                    time.sleep(1 / self.Speed)
+                    '''self.colours[i]=self.black
+                    self.colours[i]=self.white'''
+                    self.colours[self.pindex]=self.black
+                    #self.colours[self.pindex]=self.white
+                    self.draw()
+                    self.array[i],self.array[self.pindex]=self.array[self.pindex],self.array[i]
+                    self.colours[i]=self.black
+                    self.colours[i]=self.green
+                    self.colours[self.pindex]=self.red
+                    self.colours[self.pindex]=self.white
+                    self.draw()
+                    time.sleep(1 / self.Speed)
+                    self.colours[i]=self.black
+                    self.colours[i]=self.white
+                    self.colours[self.pindex]=self.white
+                    self.draw()
+                    self.pindex+=1
+                    if not self.Sorting:
+                        break
+            self.colours[self.pindex]=self.black
+            #self.colours[self.pindex]=self.white
+            self.draw()
+            self.array[self.pindex],self.array[end]=self.array[end],self.array[self.pindex]
+            self.colours[end]=self.black
+            self.colours[end]=self.white
+            self.draw()
+            self.colours[self.pindex]=self.black
+            self.colours[self.pindex]=self.red
+            self.draw()
+            time.sleep(1 / self.Speed)
+            '''self.colours[self.pindex]=self.black
+            self.colours[self.pindex]=self.white
+            self.draw()'''
+
+    def DrawQuickSort(self):
+        #print(self.array)
+            #return self.pind
+        while(self.Sorting):
+            self.draw()
+            self.stack=deque()
+            start=0
+            end=len(self.array)-1
+            self.stack.append((start,end))
+            while len(self.stack):
+                if not self.Sorting:
+                    break
+                start,end=self.stack.pop()
+                self.partition(start,end)
+                self.pivotindex=self.pindex
+                if self.pivotindex-1>start:
+                    self.stack.append((start,self.pivotindex-1))
+                if self.pivotindex+1<end:
+                    self.stack.append((self.pivotindex+1,end))
+            #print(self.array)
+
             if not self.Sorting:
                 break
         self.WaitForEndProcess=False

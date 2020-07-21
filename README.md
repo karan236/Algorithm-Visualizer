@@ -10,7 +10,7 @@
 
 ## Visualisation:
 
-
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/Visualizer.gif?raw=true)
 
 
 ## Screenshots:

@@ -480,13 +480,22 @@ class Sorting:
             self.colours[end]=self.black
             self.colours[end]=self.white
             self.draw()
-            self.colours[self.pindex]=self.black
+            #Started Blinking effect of visualisation of pivot element which got fixed
             self.colours[self.pindex]=self.red
             self.draw()
             time.sleep(1 / self.Speed)
-            '''self.colours[self.pindex]=self.black
+            self.colours[self.pindex]=self.green
+            self.draw()
+            time.sleep(1 / self.Speed)
+            self.colours[self.pindex]=self.red
+            self.draw()
+            time.sleep(1 / self.Speed)
+            self.colours[self.pindex]=self.green
+            self.draw()
+            time.sleep(1 / self.Speed)
+            self.colours[self.pindex]=self.black
             self.colours[self.pindex]=self.white
-            self.draw()'''
+            self.draw()
 
     def DrawQuickSort(self):
         #print(self.array)

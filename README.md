@@ -9,12 +9,12 @@
 * [__Akash Kumar Bhagat__](https://github.com/charlie219)
 
 ## Visualisation:
-<<<<<<< HEAD
 
-=======
+
+
 
 ![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/Visualizer.gif?raw=true)
->>>>>>> 086c0d94b65c7fe07ea32d6c47e9a0b3bb7ad88d
+
 
 
 ## Screenshots:

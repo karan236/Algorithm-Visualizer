@@ -83,6 +83,9 @@ class Sorting:
         elif self.AlgorithmName=="Quick Sort":
             DrawElements = Thread(target=self.DrawQuickSort)
             DrawElements.start()
+        elif self.AlgorithmName=="Shell Sort":
+            DrawElements = Thread(target=self.DrawShellSort)
+            DrawElements.start()
 
 
         self.CheckActions()
@@ -523,3 +526,51 @@ class Sorting:
             if not self.Sorting:
                 break
         self.WaitForEndProcess=False
+
+    def DrawShellSort(self):
+        self.draw()
+        while(self.Sorting):
+            self.gap=len(self.array)//2
+            while(self.gap>0):
+                if not self.Sorting:
+                    break
+                for i in range(self.gap,len(self.array)):
+                    self.temp=self.array[i]
+                    self.colours[i]=self.blue
+                    self.draw()
+                    time.sleep(1/self.Speed)
+                    self.colours[i]=self.black
+                    self.colours[i]=self.white
+                    self.draw()
+                    j=i
+                    if not self.Sorting:
+                        break
+                    while(j>=self.gap and self.array[j-self.gap]>self.temp):
+                        if not self.Sorting:
+                            break
+                        self.Operations+=1
+                        self.colours[j]=self.red
+                        self.colours[j-self.gap]=self.green
+                        self.draw()
+                        time.sleep(1/self.Speed)
+
+                        self.colours[j]=self.black
+                        self.colours[j-self.gap]=self.black
+                        self.draw()
+                        self.array[j]=self.array[j-self.gap]
+                        self.colours[j]=self.green
+                        self.draw()
+                        time.sleep(1/self.Speed)
+                        self.colours[j]=self.white
+                        self.draw()
+                        j-=self.gap
+                    self.array[j]=self.temp
+                    self.colours[j]=self.green
+                    self.draw()
+                    time.sleep(1/self.Speed)
+                    self.colours[j]=self.white
+                self.gap//=2
+            if not self.Sorting:
+                    break
+        self.WaitForEndProcess=False
+

@@ -9,11 +9,13 @@
 * [__Akash Kumar Bhagat__](https://github.com/charlie219)
 
 ## Visualisation:
-
+![](img/Visualizer.gif)
 
 
 
 ## Screenshots:
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/tkinterwindow.png?raw=true)
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/pygamewindow.png?raw=true)
 
 ## Prerequisites:
  *Click on the library to Download*
@@ -29,6 +31,7 @@ Download or clone all the files
 ```
 Install python
 ```
+.
 
 ``` 
 Install pygame and pillow PIL library

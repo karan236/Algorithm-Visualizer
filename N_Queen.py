@@ -24,7 +24,7 @@ class N_queen:
         self.win = pygame.display.set_mode((self.SIDE+450, self.SIDE))
         self.speed=speed
         self.Q_SIDE = (3 * self.block) // 4
-        self.queen = pygame.image.load('queen.png')
+        self.queen = pygame.image.load('Images/queen.png')
         self.queen = pygame.transform.scale(self.queen, (self.Q_SIDE, self.Q_SIDE))
         self.WHITE = (255, 255, 255)
         self.BLACK = (0, 0, 0)
@@ -176,3 +176,10 @@ class N_queen:
             del self.diagonal2[r - c]
         self.WaitForEndProcess=False
         return 0
+'''
+run=True
+while(run):
+    
+    k=N_queen(9,17)
+    run=False
+'''

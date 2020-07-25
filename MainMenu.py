@@ -4,14 +4,14 @@ from SortingAlgorithm import *
 import StartProcess
 import N_Queen
 from Knight_Tour import *
-
+from SUDOKU import *
 class Window:
     def __init__(self,root):
         self.root = root
         self.root.geometry("300x150")
         self.root.resizable(False, False)
         self.root.title("Algorithm Visualizer")
-        self.root.iconbitmap("hnet.com-image.ico")
+        self.root.iconbitmap("Images/hnet.com-image.ico")
 
         self.AlgoTypeLabel = Label(self.root, text='Select Algorithm Type:-', font=("Courier", 10))
         self.AlgoTypeLabel.pack(pady=2)
@@ -56,6 +56,11 @@ class Window:
                 self.temp2 = self.SpeedSlider.get()
                 self.root.destroy()
                 Knight(self.temp1, self.temp2)
+            if self.AlgoNameVar.get() == "SUDOKU":
+                self.temp1 = self.DimensionOfBoard.get()
+                self.temp2 = self.SpeedSlider.get()
+                self.root.destroy()
+                Sudoku(9, self.temp2)
 
     def SecondWindow(self):
         if self.AlgoTypeVar.get()=="Select Algorithm Type":
@@ -66,7 +71,7 @@ class Window:
             self.root.geometry("725x300")
             self.root.resizable(False, False)
             self.root.title(self.AlgoTypeVar.get())
-            self.root.iconbitmap("hnet.com-image.ico")
+            self.root.iconbitmap("Images/hnet.com-image.ico")
 
             self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', pady=5, font=("Courier", 10))
             self.AlgoNameLabel.grid(row=0, column=1)
@@ -113,14 +118,14 @@ class Window:
             self.root.geometry("750x300")
             self.root.resizable(False, False)
             self.root.title(self.AlgoTypeVar.get())
-            self.root.iconbitmap("hnet.com-image.ico")
+            self.root.iconbitmap("Images/hnet.com-image.ico")
 
             self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', pady=5, font=("Courier", 10))
             self.AlgoNameLabel.grid(row=0, column=1)
 
             self.AlgoNameVar = StringVar()
             self.AlgoNameVar.set("Select Algorithm Name")
-            self.AlgoNameList = ["Select Algorithm Name","Knight Tour", "N-Queen"]
+            self.AlgoNameList = ["Select Algorithm Name","Knight Tour", "N-Queen","SUDOKU"]
             self.AlgoNameDrop = OptionMenu(self.root, self.AlgoNameVar, *self.AlgoNameList)
             self.AlgoNameDrop.grid(row=1, column=1)
 
@@ -140,7 +145,7 @@ class Window:
             self.SpeedLabel2 = Label(self.root, text="(in Operations per sec.)")
             self.SpeedLabel2.grid(row=4, column=2)
 
-            self.SpeedSlider = Scale(self.root, from_=1, to=400, orient=HORIZONTAL, sliderlength=20, width=10)
+            self.SpeedSlider = Scale(self.root, from_=1, to=100, orient=HORIZONTAL, sliderlength=20, width=10)
             self.SpeedSlider.grid(row=5, column=2)
 
             self.fill1 = Label(self.root, text="")

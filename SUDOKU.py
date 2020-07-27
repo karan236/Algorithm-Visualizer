@@ -16,7 +16,7 @@ class Sudoku():
        self.SIDE=554;self.block=60
        self.win=pygame.display.set_mode((self.SIDE+450,self.SIDE))
        pygame.display.set_caption("SUDOKU")
-       self.WHITE=(200,200,200);self.BLACK=(130,130,130)
+       self.WHITE=(250,250,250);self.BLACK=(135,206,250)
        self.font=pygame.font.Font('freesansbold.ttf',45)
        #Solved SUDOKU
        self.solve_set=[

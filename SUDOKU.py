@@ -29,7 +29,7 @@ class Sudoku():
            [[1,9,4,2,7,6,3,5,8],[2,6,8,3,9,5,7,1,4],[3,5,7,8,4,1,9,2,6],[7,4,2,6,1,9,5,8,3],
             [8,1,6,7,5,3,4,9,2],[9,3,5,4,2,8,1,6,7],[6,8,9,1,3,4,2,7,5],[5,7,3,9,6,2,8,4,1],[4,2,1,5,8,7,6,3,9]]]
        
-       self.solved=self.solve_set[randint(0,len(self.solve_set)-1)]        #Randomly selecting a solved sample
+       self.solved=self.solve_set[randint(0,len(self.solve_set)-1)]
        self.shift=7
        self.initial=[[0]*self.n for i in range(self.n)]
        self.to_solve=[[0]*self.n for i in range(self.n)]
@@ -38,12 +38,11 @@ class Sudoku():
        self.operations=0
        self.WaitForEndProcess=True
        self.StartVisualization()
-       #self.print_Number(0,0,0,(255,0,0))
        
     def StartVisualization(self):
         
         self.board()
-        self.initial_state(randint(40,60))                                               #To get the initial state of the Puzzel
+        self.initial_state(randint(40,60))
 
         AddClock =ExtraWidgits.Clock(self.win, 800, 100, 25)
         AddClock.start()
@@ -94,7 +93,6 @@ class Sudoku():
             for j in range(self.n):
                 if(self.to_solve[i][j]!=0):
                     self.print_Number(j,i,str(self.to_solve[i][j]),(0,0,0))
-        #pygame.display.update()
         
     def print_Number(self,x,y,number,color,bgcolor=()):
         x_shift=x//3*self.shift
@@ -108,9 +106,11 @@ class Sudoku():
             self.win.blit(self.font.render(number, True,color,bgcolor),(self.text_Pading_x+x_shift+x*self.block,self.text_Pading_y+y_shift+y*self.block))
         except:
             pass
-    def initial_state(self,NoOfElements):                                   #To get the initial state of the Puzzel
+    def initial_state(self,NoOfElements):
         AlreadyPresent={}
         while(len(AlreadyPresent)<NoOfElements):
+            if not self.running:
+                break
             row=randint(0,8)
             col=randint(0,8)
             if((row,col) not in AlreadyPresent):
@@ -122,27 +122,29 @@ class Sudoku():
     def board(self):
         x_shift=0;y_shift=0
         for i in range(self.n):
+            if not self.running:
+                break
             y_shift=0
             if(i%3==0 and i!=0):
                 x_shift+=self.shift
             for j in range(self.n):
+                if not self.running:
+                    break
                 if(j%3==0 and j!=0):
                     y_shift+=self.shift
-                    #pygame.draw.rect(self.win,(0,0,0),(self.x_shift+i*self.block,self.y_shift+j*self.block,self.SIDE,10))
                 if((i//3+j//3)%2==1):
                     color=self.WHITE
                 else:
                     color=self.BLACK
-                #print(i,j,color)
                 pygame.draw.rect(self.win,color,(x_shift+i*self.block,y_shift+j*self.block,self.block,self.block))
         x_shift=0;y_shift=0
         for i in range(self.n):
+            if not self.running:
+                break
             if(i%3==0 and i!=0):
                 x_shift+=self.shift
                 y_shift+=self.shift
                 continue
-                #pygame.draw.rect(self.win,(0,0,0),(self.x_shift+i*self.block,self.y_shift+j*self.block,self.SIDE,10))
-                #pygame.draw.rect(self.win,(0,0,0),(self.x_shift+i*self.block,self.y_shift+j*self.block,self.SIDE,10))
             pygame.draw.line(self.win,(0,0,0),(0,x_shift+i*self.block),(self.SIDE,x_shift+i*self.block),2)
             pygame.draw.line(self.win,(0,0,0),(y_shift+i*self.block,0),(y_shift+i*self.block,self.SIDE),2)
             
@@ -164,7 +166,8 @@ class Sudoku():
             if not self.running:
                 break
             for j in range(3):
-                #print(x1+i,y1+j)
+                if not self.running:
+                    break
                 if(self.to_solve[x1+i][y1+j]==val):
                     boo=False
                     self.print_Number(y1+j,x1+i,str(self.to_solve[x1+i][y1+j]),(0,0,0),(255,100,100))
@@ -188,14 +191,14 @@ class Sudoku():
             if not self.running:
                 break
             for j in range(3):
-                #print(x1+i,y1+j)
+                if not self.running:
+                    break
                 if(self.to_solve[x1+i][y1+j]==val):
                     if(self.initial[x1+i][y1+j]==val):
                         self.print_Number(y1+j,x1+i,str(self.to_solve[x1+i][y1+j]),(0,0,0))
                     else:
                         self.print_Number(y1+j,x1+i,str(self.to_solve[x1+i][y1+j]),(255,0,0))
                     break
-        #pygame.display.update()
         return boo
     def solve(self):
         for i in range(9):
@@ -210,8 +213,6 @@ class Sudoku():
                         if not self.running:
                             break
                         self.print_Number(j,i,str(k),(255,0,0),(0,255,0))
-                        #pygame.display.update()
-                        #time.sleep(1/self.speed)
                         if(self.chk(i,j,k)):
                             self.to_solve[i][j]=k
                             self.print_Number(j,i,str(k),(255,0,0))
@@ -221,27 +222,17 @@ class Sudoku():
                                 if not self.running:
                                     break
                                 self.print_Number(j,i,str("  "),(255,0,0))
-                                #pygame.display.update()
-                                #pygame.time.delay(5000)
                                 self.to_solve[i][j]=0
                             else:
-                                ExtraWidgits.OperationsDone(self.operations,self.win,650,400,"SUDOKU Solved.")
+                                if self.running:
+                                    ExtraWidgits.OperationsDone(self.operations,self.win,650,400,"SUDOKU Solved.")
                                 SUDOKU.RunClock=False
                                 self.WaitForEndProcess=False
                                 return 1
                         else:
                             self.print_Number(j,i,str("  "),(255,0,0))
-                            #pygame.display.update()
-                            #pygame.time.delay(5000)
                             
                 if(self.to_solve[i][j]==0):
                     return False
         self.WaitForEndProcess=False
         return True
-'''
-run=True
-while(run):
-    
-    k=Sudoku(9,17)
-    run=False
-'''

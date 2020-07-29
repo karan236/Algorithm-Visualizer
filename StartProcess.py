@@ -1,11 +1,11 @@
 import random
 import time
 from tkinter import *
-from MainMenu import front
+from MainMenu import Window
 from threading import *
 
 class START(Thread):
     def run(self):
         root=Tk()
-        front(root)
+        Window(root)
         root.mainloop()

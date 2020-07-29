@@ -158,10 +158,9 @@ class Sorting:
                 self.colours[self.CurrentPosition]=self.green
                 self.colours[self.CurrentPosition+1]=self.red
                 self.draw()
-
-                time.sleep(1/self.Speed)
                 if not self.running:
                     break
+                time.sleep(1/self.Speed)
 
                 self.colours[self.CurrentPosition] = self.black
                 self.draw()
@@ -169,7 +168,8 @@ class Sorting:
                 self.colours[self.CurrentPosition]=self.red
                 self.colours[self.CurrentPosition+1] = self.green
                 self.draw()
-
+                if not self.running:
+                    break
                 time.sleep(1/self.Speed)
 
                 self.colours[self.CurrentPosition] = self.white

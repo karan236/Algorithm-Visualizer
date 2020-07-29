@@ -54,7 +54,6 @@ Download or clone all the files
 ```
 Install python
 ```
-.
 
 ``` 
 Install pygame and pillow PIL library
@@ -70,7 +69,7 @@ Rest is user friendly :)
 
 
 ## Contribution:
-*Feel free to add some code, simply clone the repo and send us a pull request*
+*Feel free to add some code, send us a pull request*
 
 
 

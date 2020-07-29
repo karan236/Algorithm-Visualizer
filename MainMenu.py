@@ -11,11 +11,11 @@ class Window:
         self.root.geometry("300x150")
         self.root.resizable(False, False)
         self.root.title("Algorithm Visualizer")
-<<<<<<< HEAD
+#<<<<<<< HEAD
         self.root.iconbitmap("img/eye.ico")
-=======
+#=======
         self.root.iconbitmap("Images/hnet.com-image.ico")
->>>>>>> 65b81b493beb6b87c4cae318173b42c9c8bad99c
+#>>>>>>> 65b81b493beb6b87c4cae318173b42c9c8bad99c
 
         self.AlgoTypeLabel = Label(self.root, text='Select Algorithm Type:-', font=("Courier", 10))
         self.AlgoTypeLabel.pack(pady=2)
@@ -24,7 +24,6 @@ class Window:
         self.AlgoTypeVar.set("Select Algorithm Type")
         self.AlgoTypeList = ["Select Algorithm Type", "Backtracking Algorithm","Sorting Algorithm"]
         self.AlgoTypeDrop = OptionMenu(self.root, self.AlgoTypeVar, *self.AlgoTypeList)
-<<<<<<< HEAD
         self.AlgoTypeDrop.grid(row=1, column=0)
 
         self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', font=("Courier", 10))
@@ -38,9 +37,7 @@ class Window:
 
         self.fill6 = Label(self.root, text="")
         self.fill6.grid(row=2, column=0)
-=======
         self.AlgoTypeDrop.pack(pady=10)
->>>>>>> 65b81b493beb6b87c4cae318173b42c9c8bad99c
 
         self.NextButton = Button(self.root, text="Next>", command=self.SecondWindow)
         self.NextButton.pack()

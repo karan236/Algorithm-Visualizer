@@ -1,5 +1,5 @@
 # [*Algorithm-Visualizer*](https://github.com/karan236/Algorithm-Visualizer)
-*__This project is for educational purpose. The main objective of this project is to help beginners to be able to visualize the basic algorithms and get a better understanding of the underlying operations. And obviously it is needless to say that anyone who is willing to contribute is invited to use their creativity in making the visualizations even better and attractive. One can add fresh Algorithms and visualization of their choice too__*
+&nbsp;&nbsp;&nbsp;&nbsp;*__This project is for educational purpose. The main objective of this project is to help beginners to be able to visualize the basic algorithms and get a better understanding of the underlying operations. And obviously it is needless to say that anyone who is willing to contribute is invited to use their creativity in making the visualizations even better and attractive. One can add fresh Algorithms and visualization of their choice too__*
 
 
 ## Contributors:
@@ -11,15 +11,34 @@
 ## Visualisation:
 
 
+#### &nbsp;&nbsp;Sorting Visualisation:
 
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/Visualizer.gif?raw=true)
 
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/Visualizer.gif?raw=true)
+#### &nbsp;&nbsp;N-Queens:
 
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/N-Queens.gif?raw=true)
 
+#### &nbsp;&nbsp;Sudoku:
 
-## Screenshots:
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/tkinterwindow.png?raw=true)
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/img/pygamewindow.png?raw=true)
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/SUDOKU.gif?raw=true)
+
+#### &nbsp;&nbsp;Knight's Tour:
+
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/KNIGHT'STOUR.gif?raw=true)
+
+## User Interface:
+#### &nbsp;&nbsp;Starting Interface:
+
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/FirstInterface.png?raw=true)
+
+#### &nbsp;&nbsp;Backtracking Interface:
+
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/BacktrackingInterface.png?raw=true)
+
+#### &nbsp;&nbsp;Sorting Interface:
+
+![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/SortingInterface.png?raw=true)
 
 ## Prerequisites:
  *Click on the library to Download*
@@ -51,7 +70,7 @@ Rest is user friendly :)
 
 
 ## Contribution:
-*Feel free to add some code to our repo but make sure to do it in a different branch and then send us a pull request*
+*Feel free to add some code, simply clonr the repo and send us a pull request*
 
 
 

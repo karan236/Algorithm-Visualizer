@@ -11,11 +11,7 @@ class Window:
         self.root.geometry("300x150")
         self.root.resizable(False, False)
         self.root.title("Algorithm Visualizer")
-#<<<<<<< HEAD
-        self.root.iconbitmap("img/eye.ico")
-#=======
         self.root.iconbitmap("Images/hnet.com-image.ico")
-#>>>>>>> 65b81b493beb6b87c4cae318173b42c9c8bad99c
 
         self.AlgoTypeLabel = Label(self.root, text='Select Algorithm Type:-', font=("Courier", 10))
         self.AlgoTypeLabel.pack(pady=2)
@@ -24,19 +20,6 @@ class Window:
         self.AlgoTypeVar.set("Select Algorithm Type")
         self.AlgoTypeList = ["Select Algorithm Type", "Backtracking Algorithm","Sorting Algorithm"]
         self.AlgoTypeDrop = OptionMenu(self.root, self.AlgoTypeVar, *self.AlgoTypeList)
-        self.AlgoTypeDrop.grid(row=1, column=0)
-
-        self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', font=("Courier", 10))
-        self.AlgoNameLabel.grid(row=0, column=2)
-
-        self.AlgoNameVar = StringVar()
-        self.AlgoNameVar.set("Select Algorithm Name")
-        self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort","Heap Sort","Insertion Sort","Selection Sort","Quick Sort","Shell Sort","Merge Sort"]
-        self.AlgoNameDrop = OptionMenu(self.root,self.AlgoNameVar,*self.AlgoNameList)
-        self.AlgoNameDrop.grid(row=1, column=2)
-
-        self.fill6 = Label(self.root, text="")
-        self.fill6.grid(row=2, column=0)
         self.AlgoTypeDrop.pack(pady=10)
 
         self.NextButton = Button(self.root, text="Next>", command=self.SecondWindow)
@@ -95,7 +78,7 @@ class Window:
 
             self.AlgoNameVar = StringVar()
             self.AlgoNameVar.set("Select Algorithm Name")
-            self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort", "Heap Sort", "Insertion Sort", "Selection Sort"]
+            self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort", "Heap Sort", "Insertion Sort", "Selection Sort","Quick Sort","Shell Sort"]
             self.AlgoNameDrop = OptionMenu(self.root, self.AlgoNameVar, *self.AlgoNameList)
             self.AlgoNameDrop.grid(row=1, column=1)
 

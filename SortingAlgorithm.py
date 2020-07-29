@@ -86,7 +86,9 @@ class Sorting:
         elif self.AlgorithmName=="Shell Sort":
             DrawElements = Thread(target=self.DrawShellSort)
             DrawElements.start()
-
+        elif self.AlgorithmName=="Merge Sort":
+            DrawElements = Thread(target=self.DrawMergeSort)
+            DrawElements.start()
 
         self.CheckActions()
 
@@ -574,3 +576,4 @@ class Sorting:
                     break
         self.WaitForEndProcess=False
 
+    

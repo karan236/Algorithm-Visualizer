@@ -70,7 +70,7 @@ Rest is user friendly :)
 
 
 ## Contribution:
-*Feel free to add some code, simply clonr the repo and send us a pull request*
+*Feel free to add some code, simply clone the repo and send us a pull request*
 
 
 

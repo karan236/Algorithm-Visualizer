@@ -36,7 +36,7 @@ class Rat_in_Maze:
         pygame.font.init()
         font = pygame.font.SysFont('Comic Sans MS', 23)
         self.win.blit(font.render("Click on cells to create wall.", False, (255, 255, 255)), (670,50))
-        self.win.blit(font.render("Press Enter to START", False, (255, 255, 255)),(700,80))
+        self.win.blit(font.render("Press Space to START", False, (255, 255, 255)),(700,80))
         AddMainMenuButton = ExtraWidgits.MainMenuButton(self.win,700,300)
         AddMainMenuButton.start()
         AddExitText = ExtraWidgits.ExitText(self.win,725,250)
@@ -63,7 +63,7 @@ class Rat_in_Maze:
                     if event.key == pygame.K_ESCAPE:
                         self.running = False
                         pygame.quit()
-                    if event.key==pygame.K_SPACE and not Rat_In_The_Maze.RunClock:
+                    if event.key==pygame.K_RETURN and not Rat_In_The_Maze.RunClock:
                         self.win.fill((0,0,0))
                         self.solving=False
                         self.make_maze=True
@@ -83,10 +83,9 @@ class Rat_in_Maze:
                     if event.type == pygame.KEYDOWN:
                         if(not self.running):
                             break
-                        if event.key == pygame.K_RETURN and not self.solving:
+                        if event.key == pygame.K_SPACE and not self.solving:
                             self.solving=True
                             self.WaitForEndProcess=True
-                            Rat_In_The_Maze.RunClock=True
                             self.make_maze=False
                             AddClock =ExtraWidgits.Clock(self.win, 850, 180, 25)
                             AddClock.start()
@@ -103,7 +102,7 @@ class Rat_in_Maze:
                                 pass
                             Process = StartProcess.START()
                             Process.start()
-                            Rat_In_The_Maze.RunClock=False
+                            Rat_In_The_Maze.RunClock=True
                             
                         except:
                             pass
@@ -177,14 +176,14 @@ class Rat_in_Maze:
     def solve(self):
         self.visited[0][0]=1
         if(self.find_way(0,0)):
-            ExtraWidgits.OperationsDone(self.operations,self.win,700,400,"MAZE is Solved")
+            ExtraWidgits.OperationsDone(self.operations-1,self.win,700,400,"MAZE is Solved")
         elif(not self.running):
             self.WaitForEndProcess=False
             Rat_In_The_Maze.RunClock=False
             return 0
         else:
-            ExtraWidgits.OperationsDone(self.operations,self.win,700,400,"MAZE cannot be Solved")
+            ExtraWidgits.OperationsDone(self.operations-1,self.win,700,400,"MAZE cannot be Solved")
         font = pygame.font.SysFont('Comic Sans MS', 28)
-        self.win.blit(font.render("Press Space to Restart.", False, (255, 255, 255)), (680,500))
+        self.win.blit(font.render("Press Enter to Restart.", False, (255, 255, 255)), (680,500))
         self.WaitForEndProcess=False
         Rat_In_The_Maze.RunClock=False

@@ -90,7 +90,11 @@ class Sudoku():
 
     def print_Board(self):
         for i in range(self.n):
+            if not self.running:
+                break
             for j in range(self.n):
+                if not self.running:
+                    break
                 if(self.to_solve[i][j]!=0):
                     self.print_Number(j,i,str(self.to_solve[i][j]),(0,0,0))
         
@@ -148,8 +152,7 @@ class Sudoku():
             pygame.draw.line(self.win,(0,0,0),(0,x_shift+i*self.block),(self.SIDE,x_shift+i*self.block),2)
             pygame.draw.line(self.win,(0,0,0),(y_shift+i*self.block,0),(y_shift+i*self.block,self.SIDE),2)
             
-                
-        pygame.display.update()
+
     def chk(self,x,y,val):
         boo=True
         for i in range(9):
@@ -201,25 +204,33 @@ class Sudoku():
                     break
         return boo
     def solve(self):
+        chk=1
+        if(not self.running):
+            return 0
         for i in range(9):
             if not self.running:
+                chk=0
                 break
             for j in range(9):
                 self.operations+=1
                 if not self.running:
+                    chk=0
                     break
                 if(self.to_solve[i][j]==0):
                     for k in range(1,10):
                         if not self.running:
+                            chk=0
                             break
                         self.print_Number(j,i,str(k),(255,0,0),(0,255,0))
                         if(self.chk(i,j,k)):
                             self.to_solve[i][j]=k
                             self.print_Number(j,i,str(k),(255,0,0))
                             if not self.running:
+                                chk=0
                                 break
                             if(not self.solve()):
                                 if not self.running:
+                                    chk=0
                                     break
                                 self.print_Number(j,i,str("  "),(255,0,0))
                                 self.to_solve[i][j]=0
@@ -230,9 +241,15 @@ class Sudoku():
                                 self.WaitForEndProcess=False
                                 return 1
                         else:
+                            if(not self.running):
+                                chk=0
+                                break
                             self.print_Number(j,i,str("  "),(255,0,0))
-                            
+                if(not self.running):
+                    break           
                 if(self.to_solve[i][j]==0):
                     return False
+            if(not self.running):
+                break
         self.WaitForEndProcess=False
         return True

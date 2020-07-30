@@ -11,7 +11,7 @@ class Rat_in_Maze:
         pygame.init()
         pygame.display.set_caption("Rat In The Maze")
         self.operations=0
-        self.WaitForEndProcess=True
+        self.WaitForEndProcess=False
         self.n = v
         self.SIDE = 600
         self.block = self.SIDE // self.n
@@ -36,7 +36,7 @@ class Rat_in_Maze:
         pygame.font.init()
         font = pygame.font.SysFont('Comic Sans MS', 23)
         self.win.blit(font.render("Click on cells to create wall.", False, (255, 255, 255)), (670,50))
-        self.win.blit(font.render("Press SpaceBar to START", False, (255, 255, 255)), (670,80))
+        self.win.blit(font.render("Press Enter to START", False, (255, 255, 255)),(700,80))
         AddMainMenuButton = ExtraWidgits.MainMenuButton(self.win,700,300)
         AddMainMenuButton.start()
         AddExitText = ExtraWidgits.ExitText(self.win,725,250)
@@ -46,11 +46,14 @@ class Rat_in_Maze:
     def CheckActions(self):
         self.X = 700
         self.Y = 300
+        SOLVE=Thread(target=self.solve)
         while (self.running):
             try:
                 self.pos = pygame.mouse.get_pos()
             except:
                 pass
+            if(not self.running):
+                break
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     self.running=False
@@ -60,20 +63,33 @@ class Rat_in_Maze:
                     if event.key == pygame.K_ESCAPE:
                         self.running = False
                         pygame.quit()
-
+                    if event.key==pygame.K_SPACE and not Rat_In_The_Maze.RunClock:
+                        self.win.fill((0,0,0))
+                        self.solving=False
+                        self.make_maze=True
+                        self.WaitForEndProcess=True
+                        Rat_In_The_Maze.RunClock=True
+                        self.operation=0
+                        self.rat_pos=[[0,0]]
+                        self.visited=[[0]*self.n for i in range(self.n)]
+                        self.StartVisualization()
                 if(not self.solving):
+                    if(not self.running):
+                        break
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         if(0<=self.pos[0]<=600 and 0<=self.pos[1]<=600) and self.make_maze:
-                            #print(self.pos,self.make_maze)
                             self.make_Wall(self.pos[0],self.pos[1])
                     
                     if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_SPACE and not self.solving:
+                        if(not self.running):
+                            break
+                        if event.key == pygame.K_RETURN and not self.solving:
                             self.solving=True
+                            self.WaitForEndProcess=True
+                            Rat_In_The_Maze.RunClock=True
                             self.make_maze=False
                             AddClock =ExtraWidgits.Clock(self.win, 850, 180, 25)
                             AddClock.start()
-        
                             SOLVE=Thread(target=self.solve)
                             SOLVE.start()
                             pass
@@ -87,7 +103,7 @@ class Rat_in_Maze:
                                 pass
                             Process = StartProcess.START()
                             Process.start()
-                            Rat_In_The_Maze.RunClock=True
+                            Rat_In_The_Maze.RunClock=False
                             
                         except:
                             pass
@@ -130,6 +146,8 @@ class Rat_in_Maze:
         self.win.blit(self.RAT, (self.IMG_Pading + (self.rat_pos[-1][0]) * self.block, self.IMG_Pading + (self.rat_pos[-1][1]) * self.block))
     def find_way(self,x,y):
         self.operations+=1
+        if(not self.running):
+            return 0
         if(x==self.n-1 and y==self.n-1):
             return 1
         for i in range(4):
@@ -138,6 +156,8 @@ class Rat_in_Maze:
             row=x+self.RIGHT_MOVE[i]
             col=y+self.DOWN_MOVE[i]
             if(0<=row<self.n and 0<=col<self.n and self.maze[row][col]==0 and not self.visited[row][col]):
+                if(not self.running):
+                    break
                 self.visited[row][col]=1
                 self.rat_pos.append([row,col])
                 self.print_maze()
@@ -145,17 +165,26 @@ class Rat_in_Maze:
                 if(self.find_way(row,col)):
                     return 1
                 else:
+                    if(not self.running):
+                        return 0
                     self.operations+=1
                     self.rat_pos.pop()
                     self.print_maze()
                     time.sleep(1/self.speed)
+                
         return 0
                 
     def solve(self):
         self.visited[0][0]=1
         if(self.find_way(0,0)):
             ExtraWidgits.OperationsDone(self.operations,self.win,700,400,"MAZE is Solved")
+        elif(not self.running):
+            self.WaitForEndProcess=False
+            Rat_In_The_Maze.RunClock=False
+            return 0
         else:
             ExtraWidgits.OperationsDone(self.operations,self.win,700,400,"MAZE cannot be Solved")
+        font = pygame.font.SysFont('Comic Sans MS', 28)
+        self.win.blit(font.render("Press Space to Restart.", False, (255, 255, 255)), (680,500))
         self.WaitForEndProcess=False
         Rat_In_The_Maze.RunClock=False

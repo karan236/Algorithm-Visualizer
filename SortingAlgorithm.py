@@ -614,8 +614,10 @@ class Sorting:
             j+=1   
         j=0
         for x in range(start,end+1):
+            self.colours[x]=self.black
+            self.draw()
             self.array[x]=temp[j]
-            self.colours[x]=self.green
+            self.colours[x]=self.white
             self.draw()
             time.sleep(1/self.Speed)
             self.colours[x]=self.white
@@ -624,34 +626,29 @@ class Sorting:
             if end-start==len(self.array)-2:
                 self.colours[x]=self.red
             else:
-                self.colours[x]=self.green
-
-
-
-
-
+                self.colours[x]=self.red
 
     def DrawMergeSort(self):
         self.draw()
         #print(self.array)
-        NoOfElementsToBeMerged=2
         while(self.Sorting):
-            while(NoOfElementsToBeMerged<len(self.array)):
+            self.currentSize=1
+            while self.currentSize<len(self.array)-1:
+                self.leftSubarray=0
                 if not self.Sorting:
-                    break 
-                i=0
-                while(i+NoOfElementsToBeMerged-1<len(self.array)):
+                    break
+                while self.leftSubarray<len(self.array)-1:
+                    self.Operations+=1
                     if not self.Sorting:
-                        break 
-                    start=i
-                    end=i+NoOfElementsToBeMerged-1
-                    mid=(start+end)//2
-                    self.merge(start,mid,end)
-                    i+=NoOfElementsToBeMerged
-                NoOfElementsToBeMerged*=2
-            if len(self.array)%2==0:
-                self.merge(0,NoOfElementsToBeMerged//2,len(self.array)-1)
-            #print(self.array)
+                        break
+                    mid=min(self.leftSubarray+self.currentSize-1,len(self.array)-1)
+                    if 2*self.currentSize+self.leftSubarray-1<len(self.array)-1:
+                        self.rightSubarray=2*self.currentSize+self.leftSubarray-1
+                    else:
+                        self.rightSubarray=len(self.array)-1
+                    self.merge(self.leftSubarray,mid,self.rightSubarray)
+                    self.leftSubarray=self.leftSubarray+2*self.currentSize
+                self.currentSize*=2
             if not self.Sorting:
                 break
         self.WaitForEndProcess=False

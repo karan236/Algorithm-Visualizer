@@ -577,62 +577,63 @@ class Sorting:
         self.WaitForEndProcess=False
 
     def merge(self,start,mid,end):
-        leftSubarray=self.array[start:mid-start+1]
-        rightSubarray=self.array[mid+1:end-mid]
-        i=0
-        j=0
-        k=mid
-        while(i<len(leftSubarray) and j<len(rightSubarray)):
-            print('hello')
-            self.colours[start+i]=self.red
-            self.colours[mid+j]=self.green
+        '''leftSubarray=self.array[start:mid-start+1]
+        rightSubarray=self.array[mid+1:end-mid]'''
+        i=start
+        j=mid+1
+        temp=[]
+        while(i<=mid and j<=end):
+            self.colours[i]=self.blue
+            self.colours[j]=self.blue
             self.draw()
             time.sleep(1/self.Speed)
-            if leftSubarray[i]<rightSubarray[j]:
-                self.colours[k]=self.white
-                self.draw()
-                self.array[k]=leftSubarray[i]
-                self.colours[k]=self.black
-                self.colours[k]=self.green
-                self.draw()
-                time.sleep(1/self.Speed)
-                self.colours[k]=self.white
-                self.draw()
+            self.colours[i]=self.white
+            self.colours[j]=self.white
+            self.draw()
+            if self.array[i]<self.array[j]:
+                temp.append(self.array[i])
                 i+=1
-                k+=1
             else:
-                self.colours[k]=self.white
-                self.draw()
-                self.array[k]=rightSubarray[j]
-                self.colours[k]=self.black
-                self.colours[k]=self.red
-                self.draw()
-                time.sleep(1/self.Speed)
-                self.colours[k]=self.white
-                self.draw()
+                temp.append(self.array[j])
                 j+=1
-                k+=1
-        while(j<len(rightSubarray)):
-            self.array[k]=rightSubarray[j]
-            self.colours[k]=self.black
-            self.colours[k]=self.blue
+        while(i<=mid):
+            self.colours[i]=self.red
             self.draw()
             time.sleep(1/self.Speed)
-            self.colours[k]=self.white
-            k+=1
-            j+=1
-        while(i<len(leftSubarray)):
-            self.array[k]=leftSubarray[i]
-            self.colours[k]=self.black
-            self.colours[k]=self.blue
+            temp.append(self.array[i])
+            self.colours[i]=self.white
             self.draw()
-            time.sleep(1/self.Speed)
-            self.colours[k]=self.white
-            k+=1
             i+=1
+        while(j<=end):
+            self.colours[j]=self.red
+            self.draw()
+            time.sleep(1/self.Speed)
+            temp.append(self.array[j])
+            self.colours[j]=self.white
+            self.draw()
+            j+=1   
+        j=0
+        for x in range(start,end+1):
+            self.array[x]=temp[j]
+            self.colours[x]=self.green
+            self.draw()
+            time.sleep(1/self.Speed)
+            self.colours[x]=self.white
+            self.draw()
+            j+=1
+            if end-start==len(self.array)-2:
+                self.colours[x]=self.red
+            else:
+                self.colours[x]=self.green
+
+
+
+
+
+
     def DrawMergeSort(self):
         self.draw()
-        print(self.array)
+        #print(self.array)
         NoOfElementsToBeMerged=2
         while(self.Sorting):
             while(NoOfElementsToBeMerged<len(self.array)):
@@ -647,10 +648,10 @@ class Sorting:
                     mid=(start+end)//2
                     self.merge(start,mid,end)
                     i+=NoOfElementsToBeMerged
-
+                NoOfElementsToBeMerged*=2
             if len(self.array)%2==0:
                 self.merge(0,NoOfElementsToBeMerged//2,len(self.array)-1)
-            print(self.array)
+            #print(self.array)
             if not self.Sorting:
                 break
         self.WaitForEndProcess=False

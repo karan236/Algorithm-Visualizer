@@ -87,7 +87,7 @@ class Window:
 
             self.AlgoNameVar = StringVar()
             self.AlgoNameVar.set("Select Algorithm Name")
-            self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort", "Heap Sort", "Insertion Sort", "Selection Sort"]
+            self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort", "Heap Sort", "Insertion Sort", "Selection Sort","Merge Sort"]
             self.AlgoNameDrop = OptionMenu(self.root, self.AlgoNameVar, *self.AlgoNameList)
             self.AlgoNameDrop.grid(row=1, column=1)
 

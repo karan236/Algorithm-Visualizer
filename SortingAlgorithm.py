@@ -577,8 +577,6 @@ class Sorting:
         self.WaitForEndProcess=False
 
     def merge(self,start,mid,end):
-        '''leftSubarray=self.array[start:mid-start+1]
-        rightSubarray=self.array[mid+1:end-mid]'''
         i=start
         j=mid+1
         temp=[]

@@ -4,7 +4,7 @@ from threading import *
 import SUDOKU
 import N_Queen
 import Knight_Tour
-
+import Rat_In_The_Maze
 
 class Clock(Thread):
     def __init__(self,screen,CordinateX,CordinateY,font,*args):
@@ -20,7 +20,7 @@ class Clock(Thread):
 
     def run(self):
         try:
-            while(N_Queen.RunClock and Knight_Tour.RunClock and SUDOKU.RunClock):
+            while(N_Queen.RunClock and Knight_Tour.RunClock and SUDOKU.RunClock and Rat_In_The_Maze.RunClock):
                 pygame.font.init()
 
                 myfont = pygame.font.SysFont('Comic Sans MS', self.font)
@@ -33,7 +33,7 @@ class Clock(Thread):
 
 
                 time.sleep(1)
-                if not N_Queen.RunClock or not Knight_Tour.RunClock or not  SUDOKU.RunClock:
+                if not N_Queen.RunClock or not Knight_Tour.RunClock or not  SUDOKU.RunClock or not Rat_In_The_Maze:
                     break
                 textsurface = myfont.render(self.printTime, False, (0, 0, 0))
                 self.screen.blit(textsurface, (self.CordinateX-50, self.CordinateY))

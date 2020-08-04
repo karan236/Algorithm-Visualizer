@@ -99,15 +99,16 @@ class Sudoku():
                     self.print_Number(j,i,str(self.to_solve[i][j]),(0,0,0))
         
     def print_Number(self,x,y,number,color,bgcolor=()):
-        x_shift=x//3*self.shift
-        y_shift=y//3*self.shift
+        x_shift=(x//3)*self.shift
+        y_shift=(y//3)*self.shift
         if(len(bgcolor)==0):
             if((x//3+y//3)%2==0):
                 bgcolor=self.BLACK
             else:
                 bgcolor=self.WHITE
         try:
-            self.win.blit(self.font.render(number, True,color,bgcolor),(self.text_Pading_x+x_shift+x*self.block,self.text_Pading_y+y_shift+y*self.block))
+            pygame.draw.rect(self.win,bgcolor,(4+x_shift+x*self.block,4+y_shift+y*self.block,self.block-6,self.block-6))
+            self.win.blit(self.font.render(number, True,color),(self.text_Pading_x+x_shift+x*self.block,self.text_Pading_y+y_shift+y*self.block))
         except:
             pass
     def initial_state(self,NoOfElements):

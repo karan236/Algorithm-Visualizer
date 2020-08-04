@@ -99,7 +99,7 @@ class Sudoku():
                     self.print_Number(j,i,str(self.to_solve[i][j]),(0,0,0))
         
     def print_Number(self,x,y,number,color,bgcolor=()):
-        x_shift=(x//3*)self.shift
+        x_shift=(x//3)*self.shift
         y_shift=(y//3)*self.shift
         if(len(bgcolor)==0):
             if((x//3+y//3)%2==0):

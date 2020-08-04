@@ -86,8 +86,8 @@ class Sorting:
         elif self.AlgorithmName=="Shell Sort":
             DrawElements = Thread(target=self.DrawShellSort)
             DrawElements.start()
-        elif self.AlgorithmName=="Merge Sort":
-            DrawElements = Thread(target=self.DrawMergeSort)
+        elif self.AlgorithmName=="Iterative Merge Sort":
+            DrawElements = Thread(target=self.DrawIterativeMergeSort)
             DrawElements.start()
 
         self.CheckActions()
@@ -576,7 +576,7 @@ class Sorting:
                     break
         self.WaitForEndProcess=False
 
-    def merge(self,start,mid,end):
+    def Merge(self,start,mid,end):
         i=start
         j=mid+1
         temp=[]
@@ -626,7 +626,7 @@ class Sorting:
             else:
                 self.colours[x]=self.red
 
-    def DrawMergeSort(self):
+    def DrawIterativeMergeSort(self):
         self.draw()
         #print(self.array)
         while(self.Sorting):
@@ -644,7 +644,7 @@ class Sorting:
                         self.rightSubarray=2*self.currentSize+self.leftSubarray-1
                     else:
                         self.rightSubarray=len(self.array)-1
-                    self.merge(self.leftSubarray,mid,self.rightSubarray)
+                    self.Merge(self.leftSubarray,mid,self.rightSubarray)
                     self.leftSubarray=self.leftSubarray+2*self.currentSize
                 self.currentSize*=2
             if not self.Sorting:

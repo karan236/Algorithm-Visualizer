@@ -77,9 +77,11 @@ class Sorting:
         elif self.AlgorithmName == "Selection Sort":
             DrawElements = Thread(target=self.DrawSelectionSort)
             DrawElements.start()
+            
         elif self.AlgorithmName == "Heap Sort":
             DrawElements = Thread(target=self.DrawHeapSort)
             DrawElements.start()
+
         elif self.AlgorithmName=="Quick Sort":
             DrawElements = Thread(target=self.DrawQuickSort)
             DrawElements.start()
@@ -88,6 +90,10 @@ class Sorting:
             DrawElements.start()
         elif self.AlgorithmName=="Iterative Merge Sort":
             DrawElements = Thread(target=self.DrawIterativeMergeSort)
+            DrawElements.start()
+            
+        elif self.AlgorithmName == "Recursive Merge Sort":
+            DrawElements = Thread(target=self.DrawMergeSort)
             DrawElements.start()
 
         self.CheckActions()
@@ -438,6 +444,7 @@ class Sorting:
             if not self.Sorting:
                 break
         self.WaitForEndProcess=False
+
     def partition(self,start,end):
             self.pivot=self.array[end]
             self.pindex=start
@@ -651,4 +658,101 @@ class Sorting:
                 break
         self.WaitForEndProcess=False
 
+
+
+    def merge(self,L,M,R):
+        left_index=L
+        right_index=M+1
+        current=L
+        if(not self.Sorting):
+            return
+        
+        while(left_index<right_index and right_index<=R):
+            self.Operations+=1
+            if(not self.Sorting):
+                return
+
+            self.colours[left_index]=self.blue
+            self.colours[right_index]=self.blue
+            self.draw()
+            time.sleep(1/self.Speed)
+            
+            if(self.array[left_index]<self.array[right_index]):
+                if(not self.Sorting):
+                    return
+
+                self.colours[left_index]=self.white
+                self.colours[right_index]=self.white
+                self.draw()
+                left_index+=1
+            else:
+                if(not self.Sorting):
+                    return
+
+                temp=right_index
+                self.colours[left_index]=self.green
+                self.colours[right_index]=self.red
+                self.draw()
+                
+                time.sleep(1/self.Speed)
+                
+                self.colours[left_index]=self.white
+                self.colours[right_index]=self.white
+                self.draw()
+                
+                while(temp!=left_index):
+                    if(not self.Sorting):
+                        return
+                    
+                    self.colours[temp]=self.green
+                    self.colours[temp-1]=self.red
+                    self.draw()
+                    time.sleep((1/self.Speed)/10)
+                    
+                    self.colours[temp]=self.black
+                    self.colours[temp-1]=self.black
+                    self.draw()
+                    self.array[temp],self.array[temp-1]=self.array[temp-1],self.array[temp]
+                    self.colours[temp]=self.white
+                    self.colours[temp-1]=self.white
+                    self.draw()
+                    temp-=1
+                    
+                self.colours[left_index]=self.green
+                self.colours[right_index]=self.red
+                self.draw()
+                time.sleep(1/self.Speed)
+                
+                self.colours[left_index]=self.white
+                self.colours[right_index]=self.white
+                self.draw()
+                
+                left_index+=1
+                right_index+=1
+            if(not self.Sorting):
+                return
+                    
+    def MergeSort(self,left_ind,right_ind):
+        
+        if(not self.Sorting):
+            return 
+
+        if(right_ind!=left_ind):
+            mid=(left_ind+right_ind)//2
+            self.MergeSort(left_ind,mid)
+
+            if(not self.Sorting):
+                return
+            self.MergeSort(mid+1,right_ind)
+
+            if(not self.Sorting):
+                return
+            self.merge(left_ind,mid,right_ind)
+            
+    def DrawMergeSort(self):
+        self.Speed*=3
+        self.draw()
+        self.MergeSort(0,len(self.array)-1)
+        self.draw()
+        self.WaitForEndProcess=False
 

@@ -5,6 +5,8 @@ import StartProcess
 import N_Queen
 from Knight_Tour import *
 from SUDOKU import *
+from Rat_In_The_Maze import *
+
 class Window:
     def __init__(self,root):
         self.root = root
@@ -56,11 +58,18 @@ class Window:
                 self.temp2 = self.SpeedSlider.get()
                 self.root.destroy()
                 Knight(self.temp1, self.temp2)
+                
             if self.AlgoNameVar.get() == "SUDOKU":
                 self.temp1 = self.DimensionOfBoard.get()
                 self.temp2 = self.SpeedSlider.get()
                 self.root.destroy()
                 Sudoku(9, self.temp2)
+
+            if self.AlgoNameVar.get() == "Rat in the Maze":
+                self.temp1 = self.DimensionOfBoard.get()
+                self.temp2 = self.SpeedSlider.get()
+                self.root.destroy()
+                Rat_in_Maze(self.temp1, self.temp2)
 
     def SecondWindow(self):
         if self.AlgoTypeVar.get()=="Select Algorithm Type":
@@ -78,7 +87,7 @@ class Window:
 
             self.AlgoNameVar = StringVar()
             self.AlgoNameVar.set("Select Algorithm Name")
-            self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort", "Heap Sort", "Insertion Sort", "Selection Sort","Quick Sort","Shell Sort","Iterative Merge Sort"]
+            self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort", "Heap Sort", "Insertion Sort", "Selection Sort","Quick Sort","Shell Sort","Iterative Merge Sort","Recursive Merge Sort"]
             self.AlgoNameDrop = OptionMenu(self.root, self.AlgoNameVar, *self.AlgoNameList)
             self.AlgoNameDrop.grid(row=1, column=1)
 
@@ -125,7 +134,7 @@ class Window:
 
             self.AlgoNameVar = StringVar()
             self.AlgoNameVar.set("Select Algorithm Name")
-            self.AlgoNameList = ["Select Algorithm Name","Knight Tour", "N-Queen","SUDOKU"]
+            self.AlgoNameList = ["Select Algorithm Name","Knight Tour", "N-Queen","SUDOKU","Rat in the Maze"]
             self.AlgoNameDrop = OptionMenu(self.root, self.AlgoNameVar, *self.AlgoNameList)
             self.AlgoNameDrop.grid(row=1, column=1)
 

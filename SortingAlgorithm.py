@@ -569,7 +569,7 @@ class Sorting:
                         self.array[j]=self.array[j-self.gap]
                         self.colours[j]=self.green
                         self.draw()
-                        time.sleep(1/self.Speed)
+                        #time.sleep(1/self.Speed)
                         self.colours[j]=self.white
                         self.draw()
                         j-=self.gap

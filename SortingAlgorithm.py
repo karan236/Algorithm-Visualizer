@@ -77,7 +77,7 @@ class Sorting:
         elif self.AlgorithmName == "Selection Sort":
             DrawElements = Thread(target=self.DrawSelectionSort)
             DrawElements.start()
-            
+
         elif self.AlgorithmName == "Heap Sort":
             DrawElements = Thread(target=self.DrawHeapSort)
             DrawElements.start()
@@ -91,7 +91,7 @@ class Sorting:
         elif self.AlgorithmName=="Iterative Merge Sort":
             DrawElements = Thread(target=self.DrawIterativeMergeSort)
             DrawElements.start()
-            
+
         elif self.AlgorithmName == "Recursive Merge Sort":
             DrawElements = Thread(target=self.DrawMergeSort)
             DrawElements.start()
@@ -448,7 +448,7 @@ class Sorting:
     def partition(self,start,end):
             self.pivot=self.array[end]
             self.pindex=start
-            
+
             #self.colours[end]=self.red
             self.draw()
             for i in range(start,end):
@@ -599,7 +599,6 @@ class Sorting:
                         self.draw()
                         if not self.running:
                             break
-                        time.sleep(1/self.Speed)
                         self.colours[j]=self.white
                         self.draw()
                         j-=self.gap
@@ -656,7 +655,7 @@ class Sorting:
             temp.append(self.array[j])
             self.colours[j]=self.white
             self.draw()
-            j+=1   
+            j+=1
         j=0
         for x in range(start,end+1):
             self.colours[x]=self.black
@@ -718,7 +717,7 @@ class Sorting:
         current=L
         if(not self.Sorting):
             return
-        
+
         while(left_index<right_index and right_index<=R):
             self.Operations+=1
             if(not self.Sorting):
@@ -730,7 +729,7 @@ class Sorting:
             if not self.running:
                 break
             time.sleep(1/self.Speed)
-            
+
             if(self.array[left_index]<self.array[right_index]):
                 if(not self.Sorting):
                     return
@@ -750,22 +749,22 @@ class Sorting:
                 if not self.running:
                     break
                 time.sleep(1/self.Speed)
-                
+
                 self.colours[left_index]=self.white
                 self.colours[right_index]=self.white
                 self.draw()
-                
+
                 while(temp!=left_index):
                     if(not self.Sorting):
                         return
-                    
+
                     self.colours[temp]=self.green
                     self.colours[temp-1]=self.red
                     self.draw()
                     if not self.running:
                         break
                     time.sleep((1/self.Speed))
-                    
+
                     self.colours[temp]=self.black
                     self.colours[temp-1]=self.black
                     self.draw()
@@ -774,27 +773,27 @@ class Sorting:
                     self.colours[temp-1]=self.white
                     self.draw()
                     temp-=1
-                    
+
                 self.colours[left_index]=self.green
                 self.colours[right_index]=self.red
                 self.draw()
                 if not self.running:
                     break
                 time.sleep(1/self.Speed)
-                
+
                 self.colours[left_index]=self.white
                 self.colours[right_index]=self.white
                 self.draw()
-                
+
                 left_index+=1
                 right_index+=1
             if(not self.Sorting):
                 return
-                    
+
     def MergeSort(self,left_ind,right_ind):
-        
+
         if(not self.Sorting):
-            return 
+            return
 
         if(right_ind!=left_ind):
             mid=(left_ind+right_ind)//2
@@ -807,7 +806,7 @@ class Sorting:
             if(not self.Sorting):
                 return
             self.merge(left_ind,mid,right_ind)
-            
+
     def DrawMergeSort(self):
         #self.Speed*=3
         self.draw()

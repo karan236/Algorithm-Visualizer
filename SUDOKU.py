@@ -57,7 +57,7 @@ class Sudoku():
 
 
     def CheckActions(self):
-        self.X = 700
+        self.X = 650
         self.Y = 300
         while (self.running):
             try:

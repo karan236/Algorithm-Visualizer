@@ -87,7 +87,7 @@ class Window:
 
             self.AlgoNameVar = StringVar()
             self.AlgoNameVar.set("Select Algorithm Name")
-            self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort", "Heap Sort", "Insertion Sort", "Selection Sort","Merge Sort"]
+            self.AlgoNameList = ["Select Algorithm Name", "Bubble Sort", "Heap Sort", "Insertion Sort", "Selection Sort","Quick Sort","Shell Sort","Iterative Merge Sort","Recursive Merge Sort"]
             self.AlgoNameDrop = OptionMenu(self.root, self.AlgoNameVar, *self.AlgoNameList)
             self.AlgoNameDrop.grid(row=1, column=1)
 
@@ -148,6 +148,9 @@ class Window:
 
             self.DimensionOfBoard = Scale(self.root, from_=4, to=50, orient=HORIZONTAL, sliderlength=20, width=10)
             self.DimensionOfBoard.grid(row=5, column=0)
+            #######
+            self.NoOfElementsLabel2 = Label(self.root, text="(Not For SUDOKU)")
+            self.NoOfElementsLabel2.grid(row=6, column=0)
 
             self.SpeedLabel1 = Label(self.root, text="Select Speed of Visualization:-", font=("Courier", 10))
             self.SpeedLabel1.grid(row=3, column=2)
@@ -158,11 +161,11 @@ class Window:
             self.SpeedSlider.grid(row=5, column=2)
 
             self.fill1 = Label(self.root, text="")
-            self.fill1.grid(row=6, column=0)
+            self.fill1.grid(row=7, column=0)
             self.StartButton = Button(self.root, text="Start Visualization>", padx=5, command=self.run)
-            self.StartButton.grid(row=7, column=1)
+            self.StartButton.grid(row=8, column=1)
             self.fill2 = Label(self.root, text="")
-            self.fill2.grid(row=8, column=0)
+            self.fill2.grid(row=9, column=0)
 
             self.BackButton = Button(self.root, text="<Back", padx=5, command=self.Back)
-            self.BackButton.grid(row=9, column=1)
+            self.BackButton.grid(row=10, column=1)

@@ -452,6 +452,8 @@ class Sorting:
             #self.colours[end]=self.red
             self.draw()
             for i in range(start,end):
+                if not self.running:
+                    break
                 self.Operations+=1
                 self.colours[self.pindex]=self.green
                 if self.pindex==i:
@@ -459,13 +461,19 @@ class Sorting:
                 else:
                     self.colours[i]=self.blue
                     self.draw()
+                    if not self.running:
+                        break
                     time.sleep(1 / self.Speed)
+                    if not self.running:
+                        break
                     self.colours[i]=self.black
                     self.colours[i]=self.white
                     self.draw()
                 if self.array[i]<=self.pivot:
                     self.colours[i]=self.red
                     self.draw()
+                    if not self.running:
+                        break
                     time.sleep(1 / self.Speed)
                     '''self.colours[i]=self.black
                     self.colours[i]=self.white'''
@@ -478,6 +486,8 @@ class Sorting:
                     self.colours[self.pindex]=self.red
                     self.colours[self.pindex]=self.white
                     self.draw()
+                    if not self.running:
+                        break
                     time.sleep(1 / self.Speed)
                     self.colours[i]=self.black
                     self.colours[i]=self.white
@@ -496,15 +506,23 @@ class Sorting:
             #Started Blinking effect of visualisation of pivot element which got fixed
             self.colours[self.pindex]=self.red
             self.draw()
+            if not self.running:
+                return
             time.sleep(1 / self.Speed)
             self.colours[self.pindex]=self.green
             self.draw()
+            if not self.running:
+                return
             time.sleep(1 / self.Speed)
             self.colours[self.pindex]=self.red
             self.draw()
+            if not self.running:
+                return
             time.sleep(1 / self.Speed)
             self.colours[self.pindex]=self.green
             self.draw()
+            if not self.running:
+                return
             time.sleep(1 / self.Speed)
             self.colours[self.pindex]=self.black
             self.colours[self.pindex]=self.white
@@ -524,7 +542,11 @@ class Sorting:
                 if not self.Sorting:
                     break
                 start,end=self.stack.pop()
+                if not self.running:
+                    break
                 self.partition(start,end)
+                if not self.running:
+                    break
                 self.pivotindex=self.pindex
                 if self.pivotindex-1>start:
                     self.stack.append((start,self.pivotindex-1))
@@ -544,9 +566,13 @@ class Sorting:
                 if not self.Sorting:
                     break
                 for i in range(self.gap,len(self.array)):
+                    if not self.running:
+                        break
                     self.temp=self.array[i]
                     self.colours[i]=self.blue
                     self.draw()
+                    if not self.running:
+                        break
                     time.sleep(1/self.Speed)
                     self.colours[i]=self.black
                     self.colours[i]=self.white
@@ -561,6 +587,8 @@ class Sorting:
                         self.colours[j]=self.red
                         self.colours[j-self.gap]=self.green
                         self.draw()
+                        if not self.running:
+                            break
                         time.sleep(1/self.Speed)
 
                         self.colours[j]=self.black
@@ -569,6 +597,8 @@ class Sorting:
                         self.array[j]=self.array[j-self.gap]
                         self.colours[j]=self.green
                         self.draw()
+                        if not self.running:
+                            break
                         time.sleep(1/self.Speed)
                         self.colours[j]=self.white
                         self.draw()
@@ -576,11 +606,15 @@ class Sorting:
                     self.array[j]=self.temp
                     self.colours[j]=self.green
                     self.draw()
+                    if not self.running:
+                        break
                     time.sleep(1/self.Speed)
                     self.colours[j]=self.white
                 self.gap//=2
             if not self.Sorting:
                     break
+            if not self.running:
+                break
         self.WaitForEndProcess=False
 
     def Merge(self,start,mid,end):
@@ -591,6 +625,8 @@ class Sorting:
             self.colours[i]=self.blue
             self.colours[j]=self.blue
             self.draw()
+            if not self.running:
+                break
             time.sleep(1/self.Speed)
             self.colours[i]=self.white
             self.colours[j]=self.white
@@ -604,6 +640,8 @@ class Sorting:
         while(i<=mid):
             self.colours[i]=self.red
             self.draw()
+            if not self.running:
+                break
             time.sleep(1/self.Speed)
             temp.append(self.array[i])
             self.colours[i]=self.white
@@ -612,6 +650,8 @@ class Sorting:
         while(j<=end):
             self.colours[j]=self.red
             self.draw()
+            if not self.running:
+                break
             time.sleep(1/self.Speed)
             temp.append(self.array[j])
             self.colours[j]=self.white
@@ -624,6 +664,8 @@ class Sorting:
             self.array[x]=temp[j]
             self.colours[x]=self.white
             self.draw()
+            if not self.running:
+                break
             time.sleep(1/self.Speed)
             self.colours[x]=self.white
             self.draw()
@@ -642,19 +684,29 @@ class Sorting:
                 self.leftSubarray=0
                 if not self.Sorting:
                     break
+                if not self.running:
+                    break
                 while self.leftSubarray<len(self.array)-1:
                     self.Operations+=1
                     if not self.Sorting:
+                        break
+                    if not self.running:
                         break
                     mid=min(self.leftSubarray+self.currentSize-1,len(self.array)-1)
                     if 2*self.currentSize+self.leftSubarray-1<len(self.array)-1:
                         self.rightSubarray=2*self.currentSize+self.leftSubarray-1
                     else:
                         self.rightSubarray=len(self.array)-1
+                    if not self.running:
+                        break
                     self.Merge(self.leftSubarray,mid,self.rightSubarray)
+                    if not self.running:
+                        break
                     self.leftSubarray=self.leftSubarray+2*self.currentSize
                 self.currentSize*=2
             if not self.Sorting:
+                break
+            if not self.running:
                 break
         self.WaitForEndProcess=False
 
@@ -675,6 +727,8 @@ class Sorting:
             self.colours[left_index]=self.blue
             self.colours[right_index]=self.blue
             self.draw()
+            if not self.running:
+                break
             time.sleep(1/self.Speed)
             
             if(self.array[left_index]<self.array[right_index]):
@@ -693,7 +747,8 @@ class Sorting:
                 self.colours[left_index]=self.green
                 self.colours[right_index]=self.red
                 self.draw()
-                
+                if not self.running:
+                    break
                 time.sleep(1/self.Speed)
                 
                 self.colours[left_index]=self.white
@@ -707,7 +762,9 @@ class Sorting:
                     self.colours[temp]=self.green
                     self.colours[temp-1]=self.red
                     self.draw()
-                    time.sleep((1/self.Speed)/10)
+                    if not self.running:
+                        break
+                    time.sleep((1/self.Speed))
                     
                     self.colours[temp]=self.black
                     self.colours[temp-1]=self.black
@@ -721,6 +778,8 @@ class Sorting:
                 self.colours[left_index]=self.green
                 self.colours[right_index]=self.red
                 self.draw()
+                if not self.running:
+                    break
                 time.sleep(1/self.Speed)
                 
                 self.colours[left_index]=self.white
@@ -750,7 +809,7 @@ class Sorting:
             self.merge(left_ind,mid,right_ind)
             
     def DrawMergeSort(self):
-        self.Speed*=3
+        #self.Speed*=3
         self.draw()
         self.MergeSort(0,len(self.array)-1)
         self.draw()

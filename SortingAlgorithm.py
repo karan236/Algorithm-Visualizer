@@ -813,3 +813,4 @@ class Sorting:
         self.MergeSort(0,len(self.array)-1)
         self.draw()
         self.WaitForEndProcess=False
+

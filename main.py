@@ -7,4 +7,4 @@ import StartProcess
 
 Process=StartProcess.START()
 
-Process.start()
+Process.start

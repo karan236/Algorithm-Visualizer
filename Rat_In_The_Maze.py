@@ -2,6 +2,7 @@ import pygame
 import time
 from threading import *
 import ExtraWidgits
+import ExtraWidgits_for_Pathfinders
 import StartProcess
 import Rat_In_The_Maze
 RunClock=True
@@ -37,8 +38,10 @@ class Rat_in_Maze:
         font = pygame.font.SysFont('Comic Sans MS', 23)
         self.win.blit(font.render("Click on cells to create wall.", False, (255, 255, 255)), (670,50))
         self.win.blit(font.render("Press Space to START", False, (255, 255, 255)),(700,80))
-        AddMainMenuButton = ExtraWidgits.MainMenuButton(self.win,700,300)
+        
+        AddMainMenuButton = ExtraWidgits_for_Pathfinders.MainMenuButton(self.win,700,300)
         AddMainMenuButton.start()
+
         AddExitText = ExtraWidgits.ExitText(self.win,725,250)
         AddExitText.start()
         self.CheckActions()
@@ -112,6 +115,7 @@ class Rat_in_Maze:
                 return
             self.maze[row][col]^=1
             self.print_maze()
+
     def print_maze(self):
         for y in range(self.n):
             if(not self.running):
@@ -127,22 +131,28 @@ class Rat_in_Maze:
             self.win.blit(self.HOME, ((self.n-1) * self.block,(self.n-1) * self.block))
         except:
             pass
+
         for i in range(self.n):
             if(not self.running):
                 break
-                #pygame.draw.rect(self.win,(0,0,0),(self.x_shift+i*self.block,self.y_shift+j*self.block,self.SIDE,10))
-                #pygame.draw.rect(self.win,(0,0,0),(self.x_shift+i*self.block,self.y_shift+j*self.block,self.SIDE,10))
-            pygame.draw.line(self.win,(0,0,0),(0,i*self.block),(self.SIDE,i*self.block),2)
-            pygame.draw.line(self.win,(0,0,0),(i*self.block,0),(i*self.block,self.SIDE),2)
+        
+            pygame.draw.line(self.win,(150,150,150),(0,i*self.block),(self.SIDE,i*self.block),2)
+            pygame.draw.line(self.win,(150,150,150),(i*self.block,0),(i*self.block,self.SIDE),2)
         cur=[0,0]
+
         for i in self.rat_pos[1:]:
             if(not self.running):
                 break
             pygame.draw.line(self.win, (255, 0, 0), (self.block//2 + cur[0] * self.block, self.block//2 + cur[1] * self.block),
                              (self.block//2+ i[0] * self.block,self.block//2+ i[1] * self.block), 5)
             cur=i
-        pygame.draw.line(self.win,(255,0,0),(self.n*self.block,0),(self.n*self.block,self.SIDE),5)
+
+        pygame.draw.line(self.win,(150,150,150),(self.n*self.block,0),(self.n*self.block,self.SIDE),5)
         self.win.blit(self.RAT, (self.IMG_Pading + (self.rat_pos[-1][0]) * self.block, self.IMG_Pading + (self.rat_pos[-1][1]) * self.block))
+
+        update_canvas=pygame.Rect(0,0,600,600)
+        pygame.display.update(update_canvas)
+
     def find_way(self,x,y):
         self.operations+=1
         if(not self.running):

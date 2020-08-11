@@ -136,8 +136,8 @@ class Rat_in_Maze:
             if(not self.running):
                 break
         
-            pygame.draw.line(self.win,(150,150,150),(0,i*self.block),(self.SIDE,i*self.block),2)
-            pygame.draw.line(self.win,(150,150,150),(i*self.block,0),(i*self.block,self.SIDE),2)
+            pygame.draw.line(self.win,(150,150,150),(0,i*self.block),(self.n*self.block,i*self.block),2)
+            pygame.draw.line(self.win,(150,150,150),(i*self.block,0),(i*self.block,self.n*self.block),2)
         cur=[0,0]
 
         for i in self.rat_pos[1:]:

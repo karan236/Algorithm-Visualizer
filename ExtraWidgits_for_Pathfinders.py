@@ -2,6 +2,7 @@ import pygame
 import time
 from threading import *
 import DFS
+import Astar
 
 class Clock(Thread):
     def __init__(self,screen,CordinateX,CordinateY,font,*args):
@@ -18,7 +19,7 @@ class Clock(Thread):
 
     def run(self):
         try:
-            while(DFS.RunClock):
+            while(DFS.RunClock and Astar.RunClock):
                 pygame.font.init()
 
                 myfont = pygame.font.SysFont('Comic Sans MS', self.font)
@@ -30,7 +31,7 @@ class Clock(Thread):
                 self.screen.blit(self.textsurface, (self.CordinateX-120, self.CordinateY-30))
 
                 time.sleep(1)
-                if not DFS.RunClock:
+                if not DFS.RunClock or not Astar.RunClock:
                     break
                 
                 textsurface = myfont.render(self.printTime, False, (0, 0, 0))

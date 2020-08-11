@@ -7,6 +7,7 @@ from Knight_Tour import *
 from SUDOKU import *
 from Rat_In_The_Maze import *
 from DFS import *
+from Astar import *
 
 class Window:
     def __init__(self,root):
@@ -69,7 +70,7 @@ class Window:
                 self.temp2 = self.SpeedSlider.get()
                 self.root.destroy()
                 if self.AlgoNameVar.get() == "Breadth First Search":
-                    #to be made
+                    print("To Be Made")
                     pass
                     
 
@@ -77,11 +78,11 @@ class Window:
                     dfs(self.temp1, self.temp2)
                 
                 if self.AlgoNameVar.get() == "Dijkstra":
-                    #to be made
+                    print("To Be Made")
                     pass
 
                 if self.AlgoNameVar.get() == "A*(Astar)":
-                    #to be made
+                    astar(self.temp1, self.temp2)
                     pass
 
     def SecondWindow(self):

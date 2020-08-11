@@ -20,7 +20,7 @@ class Node:
         self.x=row*width
         self.y= col*width
         self.color=WHITE
-        self.neighbours= []
+        self.neighbors = []
         self.width=width
         self.total_rows=total_rows
 

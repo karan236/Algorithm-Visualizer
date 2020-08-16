@@ -67,6 +67,7 @@ class Rat_in_Maze:
                         self.running = False
                         pygame.quit()
                     if event.key==pygame.K_RETURN and not Rat_In_The_Maze.RunClock:
+                        self.operations=0
                         self.win.fill((0,0,0))
                         self.solving=False
                         self.make_maze=True

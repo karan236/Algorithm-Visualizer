@@ -88,7 +88,7 @@ class Node:
 def draw_grid_lines(win, rows,window_side):
     width= window_side// rows
 	
-    for i in range(rows):
+    for i in range(rows+1):
         pygame.draw.line(win,GREY, (0, i * width), (rows*width, i * width))
         pygame.draw.line(win,GREY, (i * width, 0), (i * width,rows*width))
 

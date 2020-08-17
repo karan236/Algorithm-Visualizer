@@ -40,14 +40,14 @@ class dfs:
         
         
     def StartVisualization(self):
-        #draw(self.win,self.grid,self.No_Of_Rows,self.WINDOW_SIDE)
+
         AddInstructions=ExtraWidgits_for_Pathfinders.Instructions(self.win)
         AddInstructions.start()
 
-        AddExitText = ExtraWidgits_for_Pathfinders.ExitText(self.win,715,250)
+        AddExitText = ExtraWidgits_for_Pathfinders.ExitText(self.win,715,275)
         AddExitText.start()
         
-        AddMainMenuButton = ExtraWidgits_for_Pathfinders.MainMenuButton(self.win,700,300)
+        AddMainMenuButton = ExtraWidgits_for_Pathfinders.MainMenuButton(self.win,700,325)
         AddMainMenuButton.start()
         
         self.Canvas()
@@ -56,7 +56,7 @@ class dfs:
         pygame.init()
         cur=[None,None]
         X=700
-        Y=300
+        Y=325
         while(self.running):
             if(not self.running):
                 break
@@ -100,7 +100,7 @@ class dfs:
                         self.solving=True
                         self.WaitForEndProcess=True
                         DFS.RunClock=True
-                        AddClock =ExtraWidgits_for_Pathfinders.Clock(self.win, 840, 180, 25)
+                        AddClock =ExtraWidgits_for_Pathfinders.Clock(self.win, 840, 215, 25)
                         AddClock.start()
                         Solve=Thread(target=self.solve,args=(lambda:draw(self.win,self.grid,self.No_Of_Rows,self.WINDOW_SIDE),))
                         Solve.start()

@@ -46,10 +46,10 @@ class astar:
         AddInstructions=ExtraWidgits_for_Pathfinders.Instructions(self.win)
         AddInstructions.start()
 
-        AddExitText = ExtraWidgits_for_Pathfinders.ExitText(self.win,715,250)
+        AddExitText = ExtraWidgits_for_Pathfinders.ExitText(self.win,715,275)
         AddExitText.start()
         
-        AddMainMenuButton = ExtraWidgits_for_Pathfinders.MainMenuButton(self.win,700,300)
+        AddMainMenuButton = ExtraWidgits_for_Pathfinders.MainMenuButton(self.win,700,325)
         AddMainMenuButton.start()
         
         self.Canvas()
@@ -58,7 +58,7 @@ class astar:
         pygame.init()
         cur=[None,None]
         X=700
-        Y=300
+        Y=325
         while(self.running):
             if(not self.running):
                 break
@@ -101,7 +101,7 @@ class astar:
                         self.solving=True
                         self.WaitForEndProcess=True
                         Astar.RunClock=True
-                        AddClock =ExtraWidgits_for_Pathfinders.Clock(self.win, 840, 180, 25)
+                        AddClock =ExtraWidgits_for_Pathfinders.Clock(self.win, 840, 215, 25)
                         AddClock.start()
                         for row in self.grid:
                             for spot in row:

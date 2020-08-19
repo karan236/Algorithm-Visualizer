@@ -40,14 +40,14 @@ class dfs:
         
         
     def StartVisualization(self):
-        #draw(self.win,self.grid,self.No_Of_Rows,self.WINDOW_SIDE)
+
         AddInstructions=ExtraWidgits_for_Pathfinders.Instructions(self.win)
         AddInstructions.start()
 
-        AddExitText = ExtraWidgits_for_Pathfinders.ExitText(self.win,715,250)
+        AddExitText = ExtraWidgits_for_Pathfinders.ExitText(self.win,715,275)
         AddExitText.start()
         
-        AddMainMenuButton = ExtraWidgits_for_Pathfinders.MainMenuButton(self.win,700,300)
+        AddMainMenuButton = ExtraWidgits_for_Pathfinders.MainMenuButton(self.win,700,325)
         AddMainMenuButton.start()
         
         self.Canvas()
@@ -56,7 +56,7 @@ class dfs:
         pygame.init()
         cur=[None,None]
         X=700
-        Y=300
+        Y=325
         while(self.running):
             if(not self.running):
                 break
@@ -66,10 +66,14 @@ class dfs:
                 pass
             if(not self.solving):
                 draw(self.win,self.grid,self.No_Of_Rows,self.WINDOW_SIDE)
+
             for event in pygame.event.get():
                 if event.type==pygame.QUIT:
                     self.running=False
                     pygame.quit()
+
+                if event.type == pygame.MOUSEBUTTONUP:
+                        cur=[None,None]
 
                 if X <pos[0] < X + 240 and Y <pos[1] < Y + 35:
                     if event.type == pygame.MOUSEBUTTONDOWN:
@@ -87,40 +91,7 @@ class dfs:
                         
                 if(self.solving):
                     continue
-
-                if(pos[0]>=self.WINDOW_SIDE or pos[1]>=self.WINDOW_SIDE):
-                        continue
-                    
-                if(pygame.mouse.get_pressed()[0]):
-                    row,col=get_clicked_pos(pos,self.No_Of_Rows,self.WINDOW_SIDE)
-                    
-                    if(cur==[row,col]):
-                        continue
-                    cur=[row,col]
-                    
-                    node=self.grid[row][col]
-                    if(node== self.start_node):
-                        self.start_node=None
-                        node.reset()
-                        
-                    elif(node== self.stop_node):
-                        self.stop_node=None
-                        node.reset()
-                        
-                    elif not self.start_node and node!=self.stop_node:
-                        self.start_node=node
-                        self.start_node.make_start()
-                        
-                    elif not self.stop_node and node!=self.start_node:
-                        self.stop_node=node
-                        self.stop_node.make_end()
-
-                    elif node!= self.start_node and node!=self.stop_node and node.is_barrier():
-                        node.reset()
-                        
-                    elif node!= self.start_node and node!=self.stop_node and not node.is_barrier():
-                        node.make_barrier()
-
+                
                 elif(event.type == pygame.KEYDOWN):
                     if(event.key ==pygame.K_SPACE and self.start_node and self.stop_node and not self.solving):
                         
@@ -129,7 +100,7 @@ class dfs:
                         self.solving=True
                         self.WaitForEndProcess=True
                         DFS.RunClock=True
-                        AddClock =ExtraWidgits_for_Pathfinders.Clock(self.win, 840, 180, 25)
+                        AddClock =ExtraWidgits_for_Pathfinders.Clock(self.win, 840, 215, 25)
                         AddClock.start()
                         Solve=Thread(target=self.solve,args=(lambda:draw(self.win,self.grid,self.No_Of_Rows,self.WINDOW_SIDE),))
                         Solve.start()
@@ -143,6 +114,43 @@ class dfs:
                         self.grid=make_grid(self.No_Of_Rows,self.WINDOW_SIDE)
                         self.visited={node:0 for row in self.grid for node in row}
                         self.came_from={node:None for row in self.grid for node in row}
+
+                if(pos[0]>=self.WINDOW_SIDE or pos[1]>=self.WINDOW_SIDE):
+                        continue
+                    
+                if(pygame.mouse.get_pressed()[0]):
+                    row,col=get_clicked_pos(pos,self.No_Of_Rows,self.WINDOW_SIDE)
+                    
+                    if(cur==[row,col]):
+                        continue
+                    cur=[row,col]
+                    
+                    if event.type == pygame.MOUSEBUTTONUP:
+                        cur=[None,None]
+
+                    node=self.grid[row][col]
+                    if(node== self.start_node):
+                        self.start_node=None
+                        node.reset()
+                        
+                    elif(node== self.stop_node):
+                        self.stop_node=None
+                        node.reset()
+                        
+                    elif not self.start_node and node!=self.stop_node and not node.is_barrier():
+                        self.start_node=node
+                        self.start_node.make_start()
+                        
+                    elif not self.stop_node and node!=self.start_node and not node.is_barrier():
+                        self.stop_node=node
+                        self.stop_node.make_end()
+
+                    elif node!= self.start_node and node!=self.stop_node and node.is_barrier():
+                        node.reset()
+                        
+                    elif node!= self.start_node and node!=self.stop_node and not node.is_barrier():
+                        node.make_barrier()
+
      
 
     def DFS_function(self,draw,current_node):

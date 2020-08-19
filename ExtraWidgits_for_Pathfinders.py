@@ -125,9 +125,10 @@ class Instructions(Thread):
     def run(self):
         try:
             while(True):
-                self.win.blit(self.font.render("Click on cells to create wall.", False, (255, 255, 255)), (690,50))
-                self.win.blit(self.font.render("Press Space to START", False, (255, 255, 255)),(710,75))
-                self.win.blit(self.font.render("Press 'C' to Clear Screen", False, (255, 255, 255)),(700,100))
+                self.win.blit(self.font.render("Select  Starting and Ending nodes.", False, (255, 255, 255)),(660,50))
+                self.win.blit(self.font.render("Click on cells to create wall.", False, (255, 255, 255)), (690,75))
+                self.win.blit(self.font.render("Press Space to START", False, (255, 255, 255)),(710,100))
+                self.win.blit(self.font.render("Press 'C' to Clear Screen", False, (255, 255, 255)),(700,150))
         
         except:
             pass

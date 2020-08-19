@@ -3,6 +3,7 @@ from heapq import *
 import random
 import time
 import ExtraWidgits
+import ExtraWidgits_for_Pathfinders
 from threading import *
 import StartProcess
 import Knight_Tour
@@ -43,10 +44,12 @@ class Knight():
         self.grid()
         AddClock = ExtraWidgits.Clock(self.win, 850, 100, 25)
         AddClock.start()
-        AddMainMenuButton = ExtraWidgits.MainMenuButton(self.win,700,300)
-        AddMainMenuButton.start()
+        
         AddExitText = ExtraWidgits.ExitText(self.win,725,250)
         AddExitText.start()
+        AddMainMenuButton = ExtraWidgits_for_Pathfinders.MainMenuButton(self.win,700,300)
+        AddMainMenuButton.start()
+        
         StartSolving=Thread(target=self.solve)
         StartSolving.start()
         self.CheckActions()
@@ -111,6 +114,9 @@ class Knight():
                              (self.x + tx * self.block, self.x + ty * self.block), self.line_w)
             xx, yy = self.ans[i]
         self.win.blit(self.knight_img, (self.x1 + xx * self.block, self.x1 + yy * self.block))
+
+        update_display=pygame.Rect(0,0,self.SIDE,self.SIDE)
+        pygame.display.update(update_display)
 
 
 

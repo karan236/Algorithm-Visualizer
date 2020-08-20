@@ -15,8 +15,7 @@ class Window:
         self.root.geometry("300x150")
         self.root.resizable(False, False)
         self.root.title("Algorithm Visualizer")
-        img = PhotoImage("Images/hnet.com-image.ico")
-        self.root.tk.call('wm', 'iconphoto', root._w, img)
+        self.root.iconbitmap("Images/hnet.com-image.ico")
 
         self.AlgoTypeLabel = Label(self.root, text='Select Algorithm Type:-', font=("Courier", 10))
         self.AlgoTypeLabel.pack(pady=2)

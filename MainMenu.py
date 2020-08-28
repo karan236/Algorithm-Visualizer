@@ -15,7 +15,12 @@ class Window:
         self.root.geometry("300x150")
         self.root.resizable(False, False)
         self.root.title("Algorithm Visualizer")
-        self.root.iconbitmap("Images/hnet.com-image.ico")
+        try:
+            self.root.iconbitmap("Images/hnet.com-image.ico")
+        except:
+            img = PhotoImage("Images/hnet.com-image.ico")
+            self.root.tk.call('wm', 'iconphoto', self.root._w, img)
+
 
         self.AlgoTypeLabel = Label(self.root, text='Select Algorithm Type:-', font=("Courier", 10))
         self.AlgoTypeLabel.pack(pady=2)
@@ -94,8 +99,12 @@ class Window:
             self.root.geometry("725x300")
             self.root.resizable(False, False)
             self.root.title(self.AlgoTypeVar.get())
-            self.root.iconbitmap("Images/hnet.com-image.ico")
-
+            try:
+                self.root.iconbitmap("Images/hnet.com-image.ico")
+            except:
+                img = PhotoImage("Images/hnet.com-image.ico")
+                self.root.tk.call('wm', 'iconphoto', self.root._w, img)
+                
             self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', pady=5, font=("Courier", 10))
             self.AlgoNameLabel.grid(row=0, column=1)
 
@@ -143,7 +152,12 @@ class Window:
             self.root.geometry("750x300")
             self.root.resizable(False, False)
             self.root.title(self.AlgoTypeVar.get())
-            self.root.iconbitmap("Images/hnet.com-image.ico")
+            try:
+                self.root.iconbitmap("Images/hnet.com-image.ico")
+            except:
+                img = PhotoImage("Images/hnet.com-image.ico")
+                self.root.tk.call('wm', 'iconphoto', self.root._w, img)
+
 
             self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', pady=5, font=("Courier", 10))
             self.AlgoNameLabel.grid(row=0, column=1)
@@ -192,8 +206,13 @@ class Window:
             self.root.geometry("750x300")
             self.root.resizable(False, False)
             self.root.title(self.AlgoTypeVar.get())
-            self.root.iconbitmap("Images/hnet.com-image.ico")
+            try:
+                self.root.iconbitmap("Images/hnet.com-image.ico")
+            except:
+                img = PhotoImage("Images/hnet.com-image.ico")
+                self.root.tk.call('wm', 'iconphoto', self.root._w, img)
 
+    
             self.AlgoNameLabel = Label(self.root, text=' Select Algorithm Name:-', pady=5, font=("Courier", 10))
             self.AlgoNameLabel.grid(row=0, column=1)
 

@@ -13,32 +13,32 @@
 
 #### &nbsp;&nbsp;Sorting Visualisation:
 
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/Visualizer.gif?raw=true)
+![Sorting Visualisation GIF](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/Visualizer.gif?raw=true)
 
 #### &nbsp;&nbsp;N-Queens:
 
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/N-Queens.gif?raw=true)
+![N-Queens GIF](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/N-Queens.gif?raw=true)
 
-#### &nbsp;&nbsp;Sudoku:
+#### &nbsp;&nbsp;SUDOKU:
 
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/SUDOKU.gif?raw=true)
+![SUDOKU GIF](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/SUDOKU.gif?raw=true)
 
 #### &nbsp;&nbsp;Knight's Tour:
 
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/KNIGHT'STOUR.gif?raw=true)
+![Knight's Tour GIF](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/KNIGHT'STOUR.gif?raw=true)
 
 ## User Interface:
 #### &nbsp;&nbsp;Starting Interface:
 
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/FirstInterface.png?raw=true)
+![Starting Interface IMG](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/FirstInterface.png?raw=true)
 
 #### &nbsp;&nbsp;Backtracking Interface:
 
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/BacktrackingInterface.png?raw=true)
+![Backtracking Interface IMG](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/BacktrackingInterface.png?raw=true)
 
 #### &nbsp;&nbsp;Sorting Interface:
 
-![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/SortingInterface.png?raw=true)
+![Sorting Interface IMG](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/SortingInterface.png?raw=true)
 
 ## Prerequisites:
  *Click on the library to Download*

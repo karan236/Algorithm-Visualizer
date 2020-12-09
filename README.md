@@ -10,7 +10,7 @@
 
 ## Visualisation:
 
-
+Hi
 #### &nbsp;&nbsp;Sorting Visualisation:
 
 ![alt text](https://github.com/karan236/Algorithm-Visualizer/blob/aditya/Images/Visualizer.gif?raw=true)
